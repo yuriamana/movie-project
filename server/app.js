@@ -70,8 +70,8 @@ app.get("/", (req, res) => {
 // SPLITED ROUTING
 // ------------------------------------------
 
-const albumsRouter = require("./routes/albums.js");
+// const albumsRouter = require("./routes/albums.js");
 
-app.use("/api", albumsRouter);
+// app.use("/api", albumsRouter);
 
 module.exports = app;

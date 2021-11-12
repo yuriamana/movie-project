@@ -62,7 +62,6 @@ if (_DEVMODE === true) {
 app.get("/", (req, res) => {
     res.send("backend server is running");
   });
-
 //------------------------------------------
 // SPLITED ROUTING
 // ------------------------------------------
@@ -71,8 +70,12 @@ app.get("/", (req, res) => {
 // const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users.js");
 const authRouter = require("./routes/auth.js");
+const commentsRouter = require("./routes/comments.js");
+
 
 app.use(authRouter);
 app.use(usersRouter);
+app.use(commentsRouter);
 
 module.exports = app;
+

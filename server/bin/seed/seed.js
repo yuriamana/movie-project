@@ -18,8 +18,8 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(async (x) => {
     await Movies.deleteMany();
+    console.log(`Connection to ${x.connection.name} established.`);
     for (let i = 0; i < 100; i++) {
-      console.log(`Connection to $(x.connection.name) established.`);
       const id = movies.items[i].id;
       const { data } = await axios.get(
         `https://imdb-api.com/en/API/Title/k_10znj6fx/${id}`

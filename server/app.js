@@ -1,16 +1,15 @@
 require("dotenv").config(); // import all key/value pairs from .env in process.env : really usefull when going online :)
 require("./config/mongo");
+// require("./config/passport");
 
 const express = require("express");
 const session = require("express-session"); //sessions make data persist between http calls
 const path = require("path");
+// const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 const _DEVMODE = false;
-
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 
 const app = express();
 
@@ -20,8 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 app.use(
   session({
@@ -70,8 +67,12 @@ app.get("/", (req, res) => {
 // SPLITED ROUTING
 // ------------------------------------------
 
-const albumsRouter = require("./routes/albums.js");
+// const usersRouter = require("./routes/users.js");
+// const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users.js");
+const authRouter = require("./routes/auth.js");
 
-app.use("/api", albumsRouter);
+app.use(authRouter);
+app.use(usersRouter);
 
 module.exports = app;

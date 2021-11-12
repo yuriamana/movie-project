@@ -4,9 +4,7 @@ require("./../../config/mongo");
 const axios = require("axios");
 const Movies = require("../../model/Movie");
 const movies = require("./250-movies.json");
-const mongoose = require("mongoose")
-
-
+const mongoose = require("mongoose");
  
 // const MONGO_URI = process.env.MONGODB_URI 
 
@@ -22,7 +20,7 @@ mongoose
     for (let i = 0; i < 100; i++) {
       const id = movies.items[i].id;
       const { data } = await axios.get(
-        `https://imdb-api.com/en/API/Title/k_10znj6fx/${id}`
+        `https://imdb-api.com/en/API/Title/k_by6fp93n/${id}`
       );
       await Movies.create(data);
     }
@@ -33,3 +31,9 @@ mongoose
   .catch((error) =>
     console.log(`An error occured trying to connect to the DB: ${error}`)
   );
+
+  //key API - IMDB
+  // Joey: k_by6fp93n
+  // Pri: k_p4jvq6vq
+  // Yuki: k_10znj6fx
+  

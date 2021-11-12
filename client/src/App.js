@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+// pages components
+import Home from "./views/Home";
+import Dashboard from "./views/Dashboard";
+import Signin from "./views/Signin";
+import Signup from "./views/Signup";
+import NotFound from "./views/NotFound";
+// partials
+// import NavMain from "./components/NavMain";
+// auth
+import { UserContextProvider } from "./auth/UserContext";
+import { ProtectedRoute } from "./auth/ProtectedRoute";
+// styles
+// import "./styles/nav.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider>
+      <>
+        <header>
+          {/* <NavMain /> */}
+        </header>
+        <main id="content_main">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/signup" component={Signup} />
+            {/* check the protected route in src/auth folder */}
+            <ProtectedRoute path="/dashboard" component={Dashboard} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </main>
+        <footer>&copy;Priscilla | Joey | Yuki</footer>
+      </>
+    </UserContextProvider>
   );
 }
-
-export default App;

@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import APIHandler from "./../api/APIHandler";
+
 export const UserContext = React.createContext();
+
 /**
  *
  * @param {Object} props
@@ -9,6 +11,7 @@ export const UserContext = React.createContext();
 export const UserContextProvider = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     APIHandler.get("/is-loggedin")
       .then((res) => {
@@ -20,7 +23,9 @@ export const UserContextProvider = (props) => {
         setIsLoading(false);
       });
   }, []);
+
   const isLoggedIn = Boolean(currentUser); // checked on every render => passed to the
+
   return (
     <UserContext.Provider
       value={{ currentUser, isLoading, isLoggedIn, setCurrentUser }}
@@ -29,6 +34,7 @@ export const UserContextProvider = (props) => {
     </UserContext.Provider>
   );
 };
+
 /**
  * provide the UserContext to class/ based components
  * in  classes, the UserContext is bound to this.props.userContext
@@ -46,6 +52,7 @@ export const withAuth = (MyComponent) => {
     );
   };
 };
+
 /**
  * a utility function (shortcut) so you don't have to import the Context + useContext in you app's functionnal components
  * @returns

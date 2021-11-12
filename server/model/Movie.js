@@ -12,7 +12,10 @@ const MovieSchema = new Schema({
     image: String,
     name: String,
   }],
-  genres: String,
+  genreList: [{
+    key: String,
+    value: String,
+  }],
   imDbRating: String,
   duration: String,
   usersRating: String,

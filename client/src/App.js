@@ -6,6 +6,8 @@ import Dashboard from "./views/Dashboard";
 import Signin from "./views/Signin";
 import Signup from "./views/Signup";
 import NotFound from "./views/NotFound";
+import MovieDetail from "./views/MovieDetail";
+
 // partials
 // import NavMain from "./components/NavMain";
 // auth
@@ -26,7 +28,9 @@ export default function App() {
             <Route exact path="/" component={Home} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
+            <Route path="/movie-detail" component={MovieDetail} />
             {/* check the protected route in src/auth folder */}
+            {/* <Route path="/comment" component={Comment} /> */}
             <ProtectedRoute path="/dashboard" component={Dashboard} />
             <Route path="*" component={NotFound} />
           </Switch>

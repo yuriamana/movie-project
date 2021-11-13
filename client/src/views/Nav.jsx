@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from "react-router-dom";
 import './nav.css'
-import {Row, Container,Col } from 'react-bootstrap'
+import { Row, Container,Col } from 'react-bootstrap'
 
 export default function Nav (){
     return (
@@ -23,7 +23,7 @@ export default function Nav (){
             <input type="search" id="gsearch" name="gsearch" ></input>      
             </Col>
             <Col>
-            <Link to="/login" className="login">Login</Link>
+            <Link to="/signin" className="login">Signin</Link>
             </Col>
         </Row>   
     </Container>

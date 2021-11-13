@@ -71,11 +71,13 @@ app.get("/", (req, res) => {
 const usersRouter = require("./routes/users.js");
 const authRouter = require("./routes/auth.js");
 const commentsRouter = require("./routes/comments.js");
+const moviesRouter = require("./routes/movies.js");
 
 
-app.use(authRouter);
-app.use(usersRouter);
-app.use(commentsRouter);
+app.use("/api", authRouter);
+app.use("/api", usersRouter);
+app.use("/api", commentsRouter);
+app.use("/api", moviesRouter);
 
 module.exports = app;
 

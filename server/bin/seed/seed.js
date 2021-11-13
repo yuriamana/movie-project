@@ -15,12 +15,12 @@ if (!process.env.MONGO_URI) {
 mongoose
   .connect(process.env.MONGO_URI)
   .then(async (x) => {
-    await Movies.deleteMany();
+    // await Movies.deleteMany();
     console.log(`Connection to ${x.connection.name} established.`);
-    for (let i = 0; i < 100; i++) {
+    for (let i = 148; i < 250; i++) {
       const id = movies.items[i].id;
       const { data } = await axios.get(
-        `https://imdb-api.com/en/API/Title/k_by6fp93n/${id}`
+        `https://imdb-api.com/en/API/Title/k_10znj6fx/${id}`
       );
       await Movies.create(data);
     }

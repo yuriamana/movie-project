@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import APIHandler from "../../api/handler";
 
-export default class CreateComment extends Component {
+export default class Comment extends Component {
     constructor(props) {
         super(props); // MANDATORY !!!!
         this.state = {            
@@ -17,8 +17,8 @@ ComponentDidMount = async () => {
     const responseUsers = await APIHandler.get("/api/users");
     const responseMovies = await APIHandler.get("/api/movies"); 
     this.setState({
-        user: responseUsers.data[0]._id,
-        film:responseMovies.data[0]._id,
+        users: responseUsers.data[0]._id,
+        films:responseMovies.data[0]._id,
     })
     } catch (error) {console.error(error)}
 }

@@ -1,9 +1,6 @@
-.pagehome {
-
-}
 
 .movieblock {
-    height: 80px;
-    width: 35px;
+    height: 165px;
     background-color: goldenrod;
+    margin: 5px;
 }

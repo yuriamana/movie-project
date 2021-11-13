@@ -1,62 +1,72 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Row, Container,Col } from 'react-bootstrap'
+import {Row, Container,Col,Tabs,Tab } from 'react-bootstrap'
+import './home.css';
+import APIHandler from "./../api/APIHandler";
+
 
 export default class Home extends Component {
   state = {
-
+    movies : [],
   }
+
+  fetchMovies = async () => {
+    APIHandler.get("/api/movies")
+      .then(({ data }) => {
+        this.setState({
+          movies: data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  componentDidMount() {
+    this.fetchMovies();
+  }
+
   render(){
-    // console.log(Movies.image)
+    const { movies } = this.state;
 
     return (
       <div className="pagehome">
       <Nav/>
-      <h1>Recommended for you</h1>
-
       <div>
       <Container>
+      <h1>Recommended for you</h1>
+      <Tabs defaultActiveKey = "profile">
+      <Tab eventKey ="New" title="New">
+
+      </Tab>
+      <Tab eventKey="Top" title="Top">
+      
+      </Tab>
+      </Tabs>
+        <ul>
         <Row>
-          <Col className="movieblock">
-            1
+          {movies.map((movie, i) => (
+        <li className="item" key={i}>
+          <Col sm={4} md={2} className="movieblock">
+              <span>{movie.name}</span>
           </Col>
-          <Col className="movieblock">
+          </li>
+          ))}
+          {/* <Col sm={4} md={2} className="movieblock">
             2
           </Col>
-          <Col className="movieblock">
+          <Col sm={4} md={2} className="movieblock">
             3
           </Col>
-          <Col className="movieblock">
+          <Col sm={4} md={2} className="movieblock">
             4
           </Col>
-          <Col className="movieblock">
+          <Col sm={4} md={2} className="movieblock">
             5
-          </Col>
-          <Col className="movieblock">
-            6
-          </Col>
+          </Col>  */}
         </Row>
-        <Row>
-          <Col className="movieblock">
-            1
-          </Col>
-          <Col className="movieblock">
-            2
-          </Col>
-          <Col className="movieblock">
-            3
-          </Col>
-          <Col className="movieblock">
-            4
-          </Col>
-          <Col className="movieblock">
-            5
-          </Col>
-          <Col className="movieblock">
-            6
-          </Col>
-        </Row>
+        </ul>
       </Container>
       </div>
 

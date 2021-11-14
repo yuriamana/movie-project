@@ -1,5 +1,77 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
+import 'bootstrap/dist/css/bootstrap.min.css'
+// import {Row, Container,Col,Tabs,Tab } from 'react-bootstrap'
+import './home.css';
+// import APIHandler from "./../api/APIHandler";
+
+
+// export default class Home extends Component {
+//   state = {
+//     movies : [],
+//   }
+
+//   fetchMovies = async () => {
+//     APIHandler.get("/api/movies")
+//       .then(({ data }) => {
+//         this.setState({
+//           movies: data,
+//         });
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//   };
+
+//   componentDidMount() {
+//     this.fetchMovies();
+//   }
+
+//   render(){
+//     const { movies } = this.state;
+
+//     return (
+//       <div className="pagehome">
+//       <Nav/>
+//       <div>
+//       <Container>
+//       <h1>Recommended for you</h1>
+//       <Tabs defaultActiveKey = "profile">
+//       <Tab eventKey ="New" title="New">
+
+//       </Tab>
+//       <Tab eventKey="Top" title="Top">
+      
+//       </Tab>
+//       </Tabs>
+//         <ul>
+//         <Row>
+//           {movies.map((movie, i) => (
+//         <li className="item" key={i}>
+//           <Col sm={4} md={2} className="movieblock">
+//               <span>{movie.name}</span>
+//           </Col>
+//           </li>
+//           ))}
+//           {/* <Col sm={4} md={2} className="movieblock">
+//             2
+//           </Col>
+//           <Col sm={4} md={2} className="movieblock">
+//             3
+//           </Col>
+//           <Col sm={4} md={2} className="movieblock">
+//             4
+//           </Col>
+//           <Col sm={4} md={2} className="movieblock">
+//             5
+//           </Col>  */}
+//         </Row>
+//         </ul>
+//       </Container>
+//       </div>
+
+//       </div>
+//     );
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Container, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -35,33 +107,3 @@ export default class Home extends Component {
     ));
   }
 }
-//       <div className="pagehome">
-//         <Nav />
-//         <h1>Recommended for you</h1>
-
-//         <div>
-//           <Container>
-//             <Row>
-//               <Col className="movieblock">
-//                 <Link to="/movie-detail">1</Link>
-//               </Col>
-//               <Col className="movieblock">2</Col>
-//               <Col className="movieblock">3</Col>
-//               <Col className="movieblock">4</Col>
-//               <Col className="movieblock">5</Col>
-//               <Col className="movieblock">6</Col>
-//             </Row>
-//             <Row>
-//               <Col className="movieblock">1</Col>
-//               <Col className="movieblock">2</Col>
-//               <Col className="movieblock">3</Col>
-//               <Col className="movieblock">4</Col>
-//               <Col className="movieblock">5</Col>
-//               <Col className="movieblock">6</Col>
-//             </Row>
-//           </Container>
-//         </div>
-//       </div>
-//     );
-//   }
-// }

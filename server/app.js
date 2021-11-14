@@ -46,6 +46,7 @@ if (_DEVMODE === true) {
         _id: "5de9c376fa023e21a766a606",
         username: "ironhack",
         email: "toto@foo.bar",
+        password: "1234",
         avatar:
           "https://res.cloudinary.com/gdaconcept/image/upload/v1575298339/user-pictures/jadlcjjnspfhknucjfkd.png",
         role: "user"
@@ -71,11 +72,13 @@ app.get("/", (req, res) => {
 const usersRouter = require("./routes/users.js");
 const authRouter = require("./routes/auth.js");
 const commentsRouter = require("./routes/comments.js");
+const moviesRouter = require("./routes/movies.js");
 
 
-app.use(authRouter);
-app.use(usersRouter);
-app.use(commentsRouter);
+app.use("/api", authRouter);
+app.use("/api", usersRouter);
+app.use("/api", commentsRouter);
+app.use("/api", moviesRouter);
 
 module.exports = app;
 

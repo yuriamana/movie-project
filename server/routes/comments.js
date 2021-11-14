@@ -1,11 +1,11 @@
 const express = require("express");
 const router = new express.Router();
-const commentModel = require("../model/Comment");
+const CommentModel = require("../model/Comment");
 
 //READ
 
 router.get("/comments/", (req, res, next) => { //id du movie
-    commentModel.find().populate("movie")
+    CommentModel.find().populate("movie")
     .then((comments) => {
       console.log(comments);
       res.status(200).json(comments)
@@ -15,7 +15,7 @@ router.get("/comments/", (req, res, next) => { //id du movie
   });
 
 router.get("/comments/:id", (req, res, next) => { //id du movie
-  commentModel.find(req.params.id).populate("movie")
+  CommentModel.find(req.params.id).populate("movie")
   .then((comment) => {
     console.log(comment);
     res.status(200).json(comment)
@@ -26,7 +26,8 @@ router.get("/comments/:id", (req, res, next) => { //id du movie
 
 //CREATE
 router.post("/comments/create", (req,res,next) => {
-    commentModel.create({
+  console.log("api:back post comment")
+    CommentModel.create({
         ...req.body,
     })
     .then((comment) => {
@@ -39,7 +40,7 @@ router.post("/comments/create", (req,res,next) => {
 //EDIT
 
 router.patch("/comments/:id/edit", (req,res) => {
-    commentModel.create({
+    CommentModel.create({
         ...req.body,
     },{new: true})
     .then((comment) => {
@@ -52,7 +53,7 @@ router.patch("/comments/:id/edit", (req,res) => {
 // DELETE 
 
 router.delete("/comments/:id", (req,res) => {
-  commentModel
+  CommentModel
     .findByIdAndDelete(req.params.id)
     .then((album) => res.status(200).json(album))
     .catch((err) => {

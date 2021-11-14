@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import APIHandler from "../../api/handler";
 
-export default class Comment extends Component {
+export default class CreateComment extends Component {
     constructor(props) {
         super(props); // MANDATORY !!!!
         this.state = {            

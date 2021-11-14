@@ -26,6 +26,7 @@ router.get("/comments/:id", (req, res, next) => { //id du movie
 
 //CREATE
 router.post("/comments/create", (req,res,next) => {
+  console.log("api:back post comment")
     CommentModel.create({
         ...req.body,
     })

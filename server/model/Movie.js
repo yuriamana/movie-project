@@ -19,7 +19,6 @@ const MovieSchema = new Schema({
   imDbRating: String,
   duration: String,
   usersRating: String,
-  imdbRating: Number,
   id_genre: [{ type: Schema.Types.ObjectId, ref: "genre" }],
   //id_comments: { type: Schema.Types.ObjectId, ref: "comment" },
 

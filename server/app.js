@@ -46,6 +46,7 @@ if (_DEVMODE === true) {
         _id: "5de9c376fa023e21a766a606",
         username: "ironhack",
         email: "toto@foo.bar",
+        password: "1234",
         avatar:
           "https://res.cloudinary.com/gdaconcept/image/upload/v1575298339/user-pictures/jadlcjjnspfhknucjfkd.png",
         role: "user"

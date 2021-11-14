@@ -10,8 +10,13 @@ export default class MovieDetail extends Component {
     director: "",
     duration: "",
     plot: "",
-    actors: "",
-    genre: "",
+    actors: [{
+        image: "",
+        name: ""
+    }],
+    genre: [{
+        value: "",
+    }],
     imDbRating: "",
     usersRating: "",
     
@@ -32,8 +37,8 @@ export default class MovieDetail extends Component {
           duration: data.runtimeMins,
           plot: data.plot,
           image: data.image,
-        //   actors: data.actorList,
-        //   genre: data.genreList,
+        //   actors: [data.actorList],
+        //   genre: [data.genreList],
           imDbRating: data.imDbRating,
           usersRating: data.usersRating
         });

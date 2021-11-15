@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from "react-router-dom";
-import './nav.css'
+import './../styles/nav.css'
 import {Container,Navbar, FormControl, Form, Button} from 'react-bootstrap'
 
 export default function Nav (){

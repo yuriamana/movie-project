@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-import FormCreateComment from "./FormCreateComment";
+import FormCreateComment from "../components/form/FormCreateComment";
 
 export default class MovieDetail extends Component {
   state = {

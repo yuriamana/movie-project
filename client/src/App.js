@@ -7,6 +7,7 @@ import Signin from "./views/Signin";
 import Signup from "./views/Signup";
 import NotFound from "./views/NotFound";
 import MovieDetail from "./views/MovieDetail";
+import MyAccount from "./views/MyAccount"
 
 // partials
 import NavMain from "./components/Nav";
@@ -29,8 +30,9 @@ export default function App() {
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/movie-detail" component={MovieDetail} />
-    
-            {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
+            {/* check the protected route in src/auth folder */}
+            {/* <Route path="/comment" component={Comment} /> */}
+            <Route path="/my-account" component={MyAccount} />
             <Route path="*" component={NotFound} />
           </Switch> 
         </main>

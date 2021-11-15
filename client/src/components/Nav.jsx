@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./../styles/nav.css";
 import { Container, Navbar, FormControl, Form, Button } from "react-bootstrap";
 import Search from "./Search";
-import AllMovies from "./AllMovies";
 
 export default class Nav extends Component {
   state = {

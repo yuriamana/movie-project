@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import APIHandler from "../api/APIHandler";
+import APIHandler from "../../api/APIHandler";
 
 export default class FormCreateComment extends Component {
     

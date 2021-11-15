@@ -24,16 +24,11 @@ export default class Nav extends Component {
         <Link to='/'><img src="/imag/movie logo.png" alt="movielogo" className="movielogo"/></Link>
         </Navbar.Brand>
         <Form className="search">
-            {/* <FormControl
-            type="search"
-            placeholder='search'
-            id='gsearch'
-            aria-label='Search'/> */}
             <Search placeholder="Search.." handleChange={(e) => this.setState({searchField:e.target.value})}/>
             <Button type="submit" variant="outlien-success" className="Sbutton">Search</Button>
 
         </Form>
-        <Link to="/signin" className="login">Login</Link>
+        <Link to="/signin" className="login">signin</Link>
         <Link to="/signup" className="login">Signup</Link>
     </Container>
     </Navbar>

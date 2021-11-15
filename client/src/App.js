@@ -9,7 +9,7 @@ import NotFound from "./views/NotFound";
 import MovieDetail from "./views/MovieDetail";
 
 // partials
-// import NavMain from "./components/NavMain";
+import NavMain from "./components/Nav";
 // auth
 import { UserContextProvider } from "./auth/UserContext";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
@@ -21,14 +21,14 @@ export default function App() {
     <UserContextProvider>
       <>
         <header>
-          {/* <NavMain /> */}
+          <NavMain />
         </header>
         <main id="content_main">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
-            <Route path="/movie-detail" component={MovieDetail} />
+            <Route path="/movie/:id" component={MovieDetail} />
             {/* check the protected route in src/auth folder */}
             {/* <Route path="/comment" component={Comment} /> */}
             <ProtectedRoute path="/dashboard" component={Dashboard} />

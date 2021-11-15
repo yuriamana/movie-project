@@ -9,6 +9,7 @@ export default function AllMovies({ movies }) {
     <Container>
       <Row>
         {movies.map((movie, i) => (
+            <Col className="movieblock">
           <Link
             key={i}
             to={{
@@ -16,11 +17,9 @@ export default function AllMovies({ movies }) {
               movieId: movie._id,
             }}
           >
-            <Col sm={4} md={2} className="movieblock">
-              <img src="{movies.images}" alt="movies" width="200px" />
-              <h4>{movies.title}</h4>
-            </Col>
+              <img src={movie.image} alt="movies" width="180px" />
           </Link>
+            </Col>
         ))}
       </Row>
     </Container>

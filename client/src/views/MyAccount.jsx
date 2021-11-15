@@ -7,7 +7,7 @@ export default class MyAccount extends Component {
     };
   
     async componentDidMount() {
-      APIHandler.get("/api/movies/:id")
+      APIHandler.get("/movies/:id")
       
         .then(({ data }) => {
           console.log("commentedMovies", data);

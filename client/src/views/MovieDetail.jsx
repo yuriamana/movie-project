@@ -30,7 +30,7 @@ export default class MovieDetail extends Component {
     console.log(this.props.location.movieId);
     //this.props are properties you give to an object when you create so you can access/use them
     //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
-    APIHandler.get(`/api/movies/${this.props.location.movieId}`)
+    APIHandler.get(`/movies/${this.props.location.movieId}`)
       .then(({ data }) => {
         console.log("movies", data);
         this.setState({

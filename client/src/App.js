@@ -2,11 +2,12 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 // pages components
 import Home from "./views/Home";
-import Dashboard from "./views/Dashboard";
+// import Dashboard from "./views/Dashboard";
 import Signin from "./views/Signin";
 import Signup from "./views/Signup";
 import NotFound from "./views/NotFound";
 import MovieDetail from "./views/MovieDetail";
+import MyAccount from "./views/MyAccount"
 
 // partials
 // import NavMain from "./components/NavMain";
@@ -31,7 +32,7 @@ export default function App() {
             <Route path="/movie-detail" component={MovieDetail} />
             {/* check the protected route in src/auth folder */}
             {/* <Route path="/comment" component={Comment} /> */}
-            <ProtectedRoute path="/dashboard" component={Dashboard} />
+           <ProtectedRoute path="/my-account" component={MyAccount} />
             <Route path="*" component={NotFound} />
           </Switch>
         </main>

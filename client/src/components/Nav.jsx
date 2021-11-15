@@ -33,8 +33,8 @@ export default class Nav extends Component {
             <Button type="submit" variant="outlien-success" className="Sbutton">Search</Button>
             <AllMovies stats = {filterMovies} />
         </Form>
-        <Link to="/login" className="login">Login</Link>
-        <Link to="/signup" className="login">Signup</Link>
+        <Link to="/signin" className="signin">Sign in</Link>
+        <Link to="/signup" className="signup">Sign up</Link>
     </Container>
     </Navbar>
     )

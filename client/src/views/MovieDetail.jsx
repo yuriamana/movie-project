@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-import FormCreateComment from "./FormCreateComment";
+import FormCreateComment from "../components/form/FormCreateComment";
+import FormEditComment from "../components/form/FormEditComment";
 
 export default class MovieDetail extends Component {
   state = {
@@ -67,6 +68,7 @@ export default class MovieDetail extends Component {
         <span>User's rating: {this.state.usersRating}</span>
         <br />
         <FormCreateComment movieId={this.props.location.movieId}/>
+        <FormEditComment movieId={this.props.location.movieId}/>
       </div>
     );
   }

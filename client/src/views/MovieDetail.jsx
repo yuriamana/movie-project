@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-// import FormCreateComment from "./FormCreateComment";
 import { Container, Row, Col } from "react-bootstrap";
 import './../styles/MovieDetail.css'
 import FormCreateComment from "../components/form/FormCreateComment";
@@ -27,8 +26,8 @@ export default class MovieDetail extends Component {
   };
 
   async componentDidMount() {
-    console.log(this)
-      console.log(this.props.location.movieId)
+    // console.log(this)
+    //   console.log(this.props.location.movieId)
 //this.props are properties you give to an object when you create so you can access/use them
 //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
   APIHandler.get(`/movie/${this.props.match.params.id}`)
@@ -49,8 +48,8 @@ export default class MovieDetail extends Component {
       .catch((apiErr) => console.error(apiErr));
     }
     render() {
-      console.log(this.props)
-      console.log(this.state.actorList);
+      // console.log(this.props)
+      // console.log(this.state.actorList);
       return (
         <Container>
         <br/>
@@ -68,9 +67,12 @@ export default class MovieDetail extends Component {
             <br />
             <span className="AGlist">Actors: {this.state.actorList.map(actor => <h6>{actor.name}/</h6>)}</span>
             <br />
+            {/* <span>Actors: {this.state.actorList.map((actor, i) => <p key={i}>{actor.name}</p>)}</span>
+            <br />
+            <span>Genre: {this.state.genreList.map((genre, i) => <p key={i}>{genre.value}</p>)}</span> */}
             <span>IMDB rating : {this.state.imDbRating}</span>
             <br />
-            <span className="AGlist">Genre: {this.state.genreList.map(i => <h6> {i.value}/ </h6>)}</span>
+            <span className="AGlist">Genre : {this.state.genreList.map(i => <h6> {i.value}\ </h6>)}</span>
             <br/>
             <span>User's rating : {this.state.usersRating}</span>
           </Col>  
@@ -79,7 +81,7 @@ export default class MovieDetail extends Component {
             <h6>{this.state.plot}</h6>
             </Col>
             <Row>
-        <FormCreateComment movieId={this.props.location.movieId}/>
+        <FormCreateComment movieId={this.props.match.params.id}/>
         </Row>
         </Row>
       </Container>

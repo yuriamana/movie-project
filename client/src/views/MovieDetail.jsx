@@ -65,9 +65,9 @@ export default class MovieDetail extends Component {
             <span>Duration: {this.state.duration}min</span>
             <br />
             <br />
-            <span>Actors: {this.state.actorList.map(actor => <p>{actor.name}</p>)}</span>
+            <span>Actors: {this.state.actorList.map((actor, i) => <p key={i}>{actor.name}</p>)}</span>
             <br />
-            <span>Genre: {this.state.genreList.map(genre => <p>{genre.value}</p>)}</span>
+            <span>Genre: {this.state.genreList.map((genre, i) => <p key={i}>{genre.value}</p>)}</span>
             <br />
             <span>IMDB rating: {this.state.imDbRating}</span>
             <br />

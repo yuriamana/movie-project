@@ -13,7 +13,7 @@ export default class Home extends Component {
   async componentDidMount() {
     APIHandler.get("/movies")
       .then(({ data }) => {
-        console.log("movies", data);
+        // console.log("movies", data);
         this.setState({
           movies: data,
         });
@@ -23,7 +23,7 @@ export default class Home extends Component {
 
   render() {
     const { movies } = this.state;
-    console.log(movies);
+    // console.log(movies);
     return (
       <div className="pagehome">
         <div>

@@ -20,9 +20,8 @@ export default class MyAccount extends Component {
     render() {
         return (
             <div>Commented movies
-            this.state.commentedMovies.map(movie => {
-
-            })
+            {/* this.state.commentedMovies.map(movie => {
+            }) */}
             </div>
         )
     }

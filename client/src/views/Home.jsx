@@ -13,7 +13,7 @@ export default class Home extends Component {
   }
 
 async componentDidMount() {
-  APIHandler.get("/api/movies")
+  APIHandler.get("/movies")
     .then(({ data }) => {
       console.log("movies", data);
       this.setState({
@@ -32,7 +32,6 @@ async componentDidMount() {
     console.log(movies)
     return (
       <div className="pagehome">
-      <Nav/>
       <div>
       <Container>
       <Tabs defaultActiveKey = "profile" className="tabs">
@@ -43,55 +42,9 @@ async componentDidMount() {
       
       </Tab>
       </Tabs>
-        {/* <ul>
-        <Row>
-          {movies.map((movie, i) => (
-          <Link to={{
-            pathname: "/movie-detail",
-            movieId: movie._id,
-            }}>
-          <li className="item" key={i}>
-            <Col sm={4} md={2} className="movieblock">
-              <img key={i} src={movie.image} alt="movies" width="200px"/>
-              <span>{movie.name}</span>
-            </Col>
-          </li>
-          </Link>
-          ))}
-        </Row>
-        </ul> */}
+
       </Container>
       </div>
       </div>
   )} 
 }
-// export default class Home extends Component {
-//   state = {
-//     movies: [],
-//   };
-
-//   async componentDidMount() {
-//     APIHandler.get("/api/movies")
-//       .then(({ data }) => {
-//         console.log("movies", data);
-//         this.setState({
-//           movies: data,
-//         });
-//       })
-//       .catch((apiErr) => console.error(apiErr));
-//   }
-
-//   render() {
-//     // console.log(Movies.image)
-
-//     return this.state.movies.map((movie, i) => (
-//       <Link
-//         to={{
-//           pathname: "/movie-detail",
-//           movieId: movie._id,
-//         }}
-//       >
-//         <img key={i} src={movie.image} alt="movies" width="200px"/>
-//       </Link>
-//     ));
-//   }}

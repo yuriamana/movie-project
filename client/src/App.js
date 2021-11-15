@@ -10,10 +10,10 @@ import MovieDetail from "./views/MovieDetail";
 import MyAccount from "./views/MyAccount"
 
 // partials
-// import NavMain from "./components/NavMain";
+import NavMain from "./components/Nav";
 // auth
 import { UserContextProvider } from "./auth/UserContext";
-import { ProtectedRoute } from "./auth/ProtectedRoute";
+// import { ProtectedRoute } from "./auth/ProtectedRoute";
 // styles
 // import "./styles/nav.css";
 
@@ -22,19 +22,19 @@ export default function App() {
     <UserContextProvider>
       <>
         <header>
-          {/* <NavMain /> */}
+          <NavMain />
         </header>
         <main id="content_main">
-          <Switch>
+         <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/movie-detail" component={MovieDetail} />
             {/* check the protected route in src/auth folder */}
             {/* <Route path="/comment" component={Comment} /> */}
-           <ProtectedRoute path="/my-account" component={MyAccount} />
+            <Route path="/my-account" component={MyAccount} />
             <Route path="*" component={NotFound} />
-          </Switch>
+          </Switch> 
         </main>
         <footer>&copy;Priscilla | Joey | Yuki</footer>
       </>

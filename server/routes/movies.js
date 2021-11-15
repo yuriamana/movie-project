@@ -11,7 +11,7 @@ router.get('/movies', async (req, res, next) => {
   }
 })
 
-router.get("/movies/:id", async (req, res, next) => {
+router.get("/movie/:id", async (req, res, next) => {
   try {
     const movie = await MovieModel.findById(req.params.id);
     res.status(200).json(movie);

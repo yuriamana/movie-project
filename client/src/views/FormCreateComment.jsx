@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import APIHandler from "../api/APIHandler";
 
 export default class FormCreateComment extends Component {
+    
   inputText = "";
 
   handleInputText = (val) => {
@@ -33,7 +34,7 @@ export default class FormCreateComment extends Component {
           rows={5}
           cols={30}
           onChange={(value) => this.handleInputText(value)}
-        ></textarea>
+        ></textarea> <br />
         <button onClick={() => this.handleAddComment()}>
           Add your comments
         </button>

@@ -52,7 +52,7 @@ export default class MovieDetail extends Component {
         <img src={this.state.image} alt="one-movie" width="200px"/>
         <span>Year: {this.state.year}</span>
         <br />
-        <span>Director:{ this.state.director}</span>
+        <span>Director: {this.state.director}</span>
         <br />
         <span>Duration: {this.state.duration}</span>
         <br />

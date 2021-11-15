@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import APIHandler from "../../api/handler";
 
-export default class Comment extends Component {
+export default class CreateComment extends Component {
     constructor(props) {
         super(props); // MANDATORY !!!!
         this.state = {            
             comment: "",
             rate: "",
-            users: [],
-            films:[],
+            id_film: this.props.movieId,
+            id_author: "618ffb3532facccdf54b37dc",
         };
       }; 
 
@@ -23,8 +23,9 @@ ComponentDidMount = async () => {
     } catch (error) {console.error(error)}
 }
 
-handleSubmit = async (evt) => {
+handleInputText = async (evt) => {
     evt.preventDefault(); 
+    this.comment = evt.target.value;
 
     try {
         await APIHandler.post("/api/comments/create"); 
@@ -64,12 +65,12 @@ render () {
           className="input"
           name="rate"
           type="text"
-          placeholder="Would you recommand this movie to anyone?"
+          placeholder="Would you recommend this movie to anyone?"
           value={this.state.rate}
           onChange={this.handleChange}
         />
        
-        <button className="btn" onClick={this.handleSubmit}>ok</button>
+        <button className="btn" onClick={this.handleInputText}>ok</button>
 
         </form>
         </>

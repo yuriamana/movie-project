@@ -29,7 +29,7 @@ export default class Nav extends Component {
               />
             </Link>
           </Navbar.Brand>
-           <Form className="search">
+          <Form className="search">
             <Search
               placeholder="Search.."
               handleChange={(e) =>
@@ -39,7 +39,6 @@ export default class Nav extends Component {
             <Button type="submit" variant="outlien-success" className="Sbutton">
               Search
             </Button>
-            <AllMovies stats={filterMovies} />
           </Form>
           <Link to="/signin" className="login">
             Signin

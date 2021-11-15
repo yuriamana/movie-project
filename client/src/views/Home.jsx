@@ -15,7 +15,6 @@ export default class Home extends Component {
 async componentDidMount() {
   APIHandler.get("/movies")
     .then(({ data }) => {
-      console.log("movies", data);
       this.setState({
         movies: data,
       });
@@ -29,7 +28,6 @@ async componentDidMount() {
 
   render(){
     const { movies } = this.state;
-    console.log(movies)
     return (
       <div className="pagehome">
       <div>

@@ -23,9 +23,9 @@ async componentDidMount() {
     .catch((apiErr) => console.error(apiErr));
 }
 
-//   componentDidMount() {
-//     this.fetchMovies();
-//   }
+  // componentDidMount() {
+  //   this.fetchMovies();
+  // }
 
   render(){
     const { movies } = this.state;
@@ -42,7 +42,6 @@ async componentDidMount() {
       
       </Tab>
       </Tabs>
-
       </Container>
       </div>
       </div>

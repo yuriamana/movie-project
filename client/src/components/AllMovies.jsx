@@ -13,11 +13,11 @@ export default function AllMovies({ movies }) {
           <Link
             key={i}
             to={{
-              pathname: "/movie-detail",
+              pathname: `/movie/${movie._id}`,
               movieId: movie._id,
             }}
           >
-              <img src={movie.image} alt="movies" width="180px" />
+              <img src={movie.image} alt="movies" width="180px" height="270px" />
           </Link>
             </Col>
         ))}

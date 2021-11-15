@@ -30,7 +30,7 @@ export default function App() {
             <Route exact path="/" component={Home} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
-            <Route path="/movie-detail" component={MovieDetail} />
+            <Route path="/movie/:id" component={MovieDetail} />
             {/* check the protected route in src/auth folder */}
             <Route path="/dashboard" component={MyAccount} />
             {/* <Route path="/comment" component={Comment} /> */}

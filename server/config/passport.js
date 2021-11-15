@@ -27,7 +27,7 @@ passport.deserializeUser((id, done) => {
 });
 
 // this function setup a local strategy and provides logic for login action
-passport.use(
+module.exports = () => passport.use(
   new LocalStrategy(
     { usernameField: "email" }, // change default username credential to email
     function(email, passwd, next) {

@@ -19,9 +19,13 @@ export default class MyAccount extends Component {
     }
     render() {
         return (
-            <div>Commented movies</div>
+            <div>Commented movies
+            this.state.commentedMovies.map(movie => {
+
+            })
+            </div>
         )
     }
 }
 
-//on veut display seulement les films que le user a commenté/raté
+// //on veut display seulement les films que le user a commenté/raté

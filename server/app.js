@@ -1,6 +1,6 @@
 require("dotenv").config(); // import all key/value pairs from .env in process.env : really usefull when going online :)
 require("./config/mongo");
-require("./config/passport");
+require("./config/passport")()
 
 const express = require("express");
 const session = require("express-session"); //sessions make data persist between http calls
@@ -36,7 +36,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.use(passport.initialize())
 //------------------------------------------
 // Fake Loggedin Users
 // ------------------------------------------

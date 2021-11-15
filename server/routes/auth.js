@@ -46,7 +46,7 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
   if (req.file) newUser.avatar = req.file.secure_url;
 
   UserModel.create(newUser)
-    .then((newUserFromDB) => {
+    .then(() => {
       res.status(200).json({ msg: "signup ok" });
     })
     .catch((err) => {
@@ -94,20 +94,20 @@ router.post("/signout", (req, res, next) => {
   res.json({ message: "Success" });
 });
 
-// router.use("/is-loggedin", (req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     // method provided by passport
-//     const { _id, username, email, avatar } = req.user;
-//     return res.status(200).json({
-//       currentUser: {
-//         _id,
-//         username,
-//         email,
-//         avatar,
-//       },
-//     });
-//   }
-//   res.status(403).json("Unauthorized");
-// });
+router.use("/is-loggedin", (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // method provided by passport
+    const { _id, username, email, avatar } = req.user;
+    return res.status(200).json({
+      currentUser: {
+        _id,
+        username,
+        email,
+        avatar,
+      },
+    });
+  }
+  res.status(403).json("Unauthorized");
+});
 
 module.exports = router;

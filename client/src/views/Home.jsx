@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
 import APIHandler from "./../api/APIHandler";
 //styles
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './../styles/home.css';
-import { Row, Container, Col } from "react-bootstrap";
+// import { Row, Container, Col } from "react-bootstrap";
 
 export default class Home extends Component {
   state = {

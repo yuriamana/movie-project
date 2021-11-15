@@ -29,22 +29,21 @@ async componentDidMount() {
 
   render(){
     const { movies } = this.state;
-
+    console.log(movies)
     return (
       <div className="pagehome">
       <Nav/>
       <div>
       <Container>
-      <h1>Recommended for you</h1>
-      <Tabs defaultActiveKey = "profile">
+      <Tabs defaultActiveKey = "profile" className="tabs">
       <Tab eventKey ="All" title="All">
-        <AllMovies/>
+        {movies.length && <AllMovies movies={movies} /> }
       </Tab>
       <Tab eventKey="Top" title="Top">
       
       </Tab>
       </Tabs>
-        <ul>
+        {/* <ul>
         <Row>
           {movies.map((movie, i) => (
           <Link to={{
@@ -60,7 +59,7 @@ async componentDidMount() {
           </Link>
           ))}
         </Row>
-        </ul>
+        </ul> */}
       </Container>
       </div>
       </div>

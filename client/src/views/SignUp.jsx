@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 // custom tools
+import { Container } from "react-bootstrap";
 import APIHandler from "../api/APIHandler";
 import IconAvatarAdmin from "../components/icon/IconAvatarAdmin";
 import { withAuth } from "../auth/UserContext";
@@ -11,7 +12,7 @@ import "./../styles/icon-avatar.css";
 class Signup extends Component {
   state = {
     avatar: "",
-    tmpAvatar: "",
+    tmpAvatar: "./../../public/imag/Avatar.jpeg",
     username: "admin",
     email: "admin@foobarbaz.io",
     password: "12345",
@@ -60,12 +61,17 @@ class Signup extends Component {
       // avoid the component to be rendered if user is already logged in
       <Redirect to="/dashboard" />
     ) : (
+      <Container>
       <form
         className="form"
         onSubmit={this.handleSubmit}
         onChange={this.handleChange}
       >
         <h1 className="title">Signup</h1>
+        <label className="label" htmlFor="avatar">
+        </label>
+        <IconAvatarAdmin avatar={tmpAvatar} clbk={this.handleImage} />
+          avatar
         <label className="label" htmlFor="email">
           email
         </label>
@@ -86,10 +92,6 @@ class Signup extends Component {
           name="username"
           defaultValue={username}
         />
-        <label className="label" htmlFor="avatar">
-          avatar
-        </label>
-        <IconAvatarAdmin avatar={tmpAvatar} clbk={this.handleImage} />
         <label className="label" htmlFor="password">
           password
         </label>
@@ -108,6 +110,7 @@ class Signup extends Component {
           </Link>
         </p>
       </form>
+      </Container>
     );
   }
 }

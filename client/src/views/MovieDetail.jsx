@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-// import FormCreateComment from "./FormCreateComment";
 import { Container, Row, Col } from "react-bootstrap";
 // import './../styles/MovieDetail.css'
 import FormCreateComment from "../components/form/FormCreateComment";
@@ -26,8 +25,8 @@ export default class MovieDetail extends Component {
   };
 
   async componentDidMount() {
-    console.log(this)
-      console.log(this.props.location.movieId)
+    // console.log(this)
+    //   console.log(this.props.location.movieId)
 //this.props are properties you give to an object when you create so you can access/use them
 //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
   APIHandler.get(`/movie/${this.props.match.params.id}`)
@@ -48,8 +47,8 @@ export default class MovieDetail extends Component {
       .catch((apiErr) => console.error(apiErr));
     }
     render() {
-      console.log(this.props)
-      console.log(this.state.actorList);
+      // console.log(this.props)
+      // console.log(this.state.actorList);
       return (
         <Container>
         <br/>
@@ -68,7 +67,8 @@ export default class MovieDetail extends Component {
             <br />
             <span>Actors: {this.state.actorList.map(actor => <p>{actor.name}</p>)}</span>
             <br />
-            <span>Genre: {this.state.genreList.key}</span>
+            <span>Genre: {this.state.genreList.map(genre => <p>{genre.value}</p>)}</span>
+            <br />
             <span>IMDB rating: {this.state.imDbRating}</span>
             <br />
             <span>User's rating: {this.state.usersRating}</span>

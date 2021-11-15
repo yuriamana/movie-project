@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Container, Col } from "react-bootstrap";
 import "./../styles/AllMovies.css";
@@ -9,17 +9,21 @@ export default function AllMovies({ movies }) {
     <Container>
       <Row>
         {movies.map((movie, i) => (
-            <Col className="movieblock">
-          <Link
-            key={i}
-            to={{
-              pathname: `/movie/${movie._id}`,
-              movieId: movie._id,
-            }}
-          >
-              <img src={movie.image} alt="movies" width="180px" height="270px" />
-          </Link>
-            </Col>
+          <Col key={i} className="movieblock">
+            <Link
+              to={{
+                pathname: `/movie/${movie._id}`,
+                movieId: movie._id,
+              }}
+            >
+              <img
+                src={movie.image}
+                alt="movies"
+                width="180px"
+                height="270px"
+              />
+            </Link>
+          </Col>
         ))}
       </Row>
     </Container>

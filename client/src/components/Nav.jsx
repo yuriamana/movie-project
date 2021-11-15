@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./../styles/nav.css";
-import { Container, Navbar, FormControl, Form, Button } from "react-bootstrap";
+import { Container, Navbar, Form, Button } from "react-bootstrap";
 import Search from "./Search";
 
 export default class Nav extends Component {
@@ -12,10 +12,10 @@ export default class Nav extends Component {
     stats: [],
   };
   render() {
-    const { stats, searchField } = this.state;
-    const filterMovies = stats.filter((movie) =>
-      movie.title.toLowerCase().includes(searchField.toLowerCase())
-    );
+    // const { stats, searchField } = this.state;
+    // const filterMovies = stats.filter((movie) =>
+    //   movie.title.toLowerCase().includes(searchField.toLowerCase())
+    // );
     return (
       <Navbar bg="dark" expand="sm">
         <Container>

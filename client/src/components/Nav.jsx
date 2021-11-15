@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import './../styles/nav.css'
 import {Container,Navbar, FormControl, Form, Button} from 'react-bootstrap'
 import Search from "./Search"
-import AllMovies from './AllMovies';
+
 
 export default class Nav extends Component {
     state = {
@@ -31,9 +31,9 @@ export default class Nav extends Component {
             aria-label='Search'/> */}
             <Search placeholder="Search.." handleChange={(e) => this.setState({searchField:e.target.value})}/>
             <Button type="submit" variant="outlien-success" className="Sbutton">Search</Button>
-            <AllMovies stats = {filterMovies} />
+
         </Form>
-        <Link to="/login" className="login">Login</Link>
+        <Link to="/signin" className="login">Login</Link>
         <Link to="/signup" className="login">Signup</Link>
     </Container>
     </Navbar>

@@ -46,7 +46,7 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
   if (req.file) newUser.avatar = req.file.secure_url;
 
   UserModel.create(newUser)
-    .then((newUserFromDB) => {
+    .then(() => {
       res.status(200).json({ msg: "signup ok" });
     })
     .catch((err) => {
@@ -57,13 +57,14 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
 
 router.post("/signin", (req, res, next) => {
   passport.authenticate("local", (err, user, failureDetails) => {
+    console.log(user, err)
     if (err || !user) return res.status(403).json("invalid user infos"); // 403 : Forbidden
 
     /**
      * req.Login is a passport method
      * check the doc here : http://www.passportjs.org/docs/login/
      */
-    req.logIn(user, function (err) {
+    req.login(user, function (err) {
       /* doc says: When the login operation completes, user will be assigned to req.user. */
       if (err) {
         return res.json({ message: "Something went wrong logging in" });
@@ -94,20 +95,20 @@ router.post("/signout", (req, res, next) => {
   res.json({ message: "Success" });
 });
 
-// router.use("/is-loggedin", (req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     // method provided by passport
-//     const { _id, username, email, avatar } = req.user;
-//     return res.status(200).json({
-//       currentUser: {
-//         _id,
-//         username,
-//         email,
-//         avatar,
-//       },
-//     });
-//   }
-//   res.status(403).json("Unauthorized");
-// });
+router.use("/is-loggedin", (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // method provided by passport
+    const { _id, username, email, avatar } = req.user;
+    return res.status(200).json({
+      currentUser: {
+        _id,
+        username,
+        email,
+        avatar,
+      },
+    });
+  }
+  res.status(403).json("Unauthorized");
+});
 
 module.exports = router;

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-import FormCreateComment from "./FormCreateComment";
+// import FormCreateComment from "./FormCreateComment";
 import { Container, Row, Col } from "react-bootstrap";
 import './../styles/MovieDetail.css'
+import FormCreateComment from "../components/form/FormCreateComment";
 
 export default class MovieDetail extends Component {
   state = {
@@ -18,10 +19,10 @@ export default class MovieDetail extends Component {
     }],
     genreList: [{
         value: "",
-    }],
+      },
+    ],
     imDbRating: "",
     usersRating: "",
-    
   };
 
   async componentDidMount() {
@@ -41,7 +42,7 @@ export default class MovieDetail extends Component {
           actorList: data.actorList,
           genreList: data.genreList,
           imDbRating: data.imDbRating,
-          usersRating: data.usersRating
+          usersRating: data.usersRating,
         });
       })
       .catch((apiErr) => console.error(apiErr));

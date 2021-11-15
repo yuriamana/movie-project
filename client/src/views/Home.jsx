@@ -47,4 +47,3 @@ async componentDidMount() {
       </div>
   )} 
 }
-

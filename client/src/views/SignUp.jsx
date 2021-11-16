@@ -54,7 +54,7 @@ class Signup extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { isLoggedIn } = this.props.userContext;
     const { email, password, username, tmpAvatar } = this.state;
     return isLoggedIn ? (

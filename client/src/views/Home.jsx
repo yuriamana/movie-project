@@ -49,29 +49,9 @@ export default class Home extends Component {
                 {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
               </Tab>
               <Tab eventKey="Top" title="Top">
-              {/* {movies.length && <TopMovies movies={movies} />} */}
-
+              
               </Tab>
             </Tabs>
-            <Row>
-              {movies.map((movie, i) => (
-              <Col key={i} className="movieblock">
-               <Link
-              to={{
-                pathname: `/movie/${movie._id}`,
-                movieId: movie._id,
-              }}
-            >
-              <img
-                src={movie.image}
-                alt="movies"
-                width="180px"
-                height="270px"
-              />
-            </Link>
-          </Col>
-        ))}
-      </Row>
           </Container>
         </div>
       </div>

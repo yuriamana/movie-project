@@ -12,14 +12,13 @@ export default class FormCreateComment extends Component {
     });
   };
 
-  handleAddComment = (newComment) => {
+  handleAddComment = (e) => {
    
     // console.log("here");
     let myComment = {
       comment: this.state.inputText,
       rate: "3",
       id_film: this.props.movieId,
-      id_author: "618ffb3532facccdf54b37dc",
     };
 
 
@@ -32,7 +31,7 @@ export default class FormCreateComment extends Component {
         // du coup re-render et on peut afficher la liste des comments
         console.log(res);
         console.log(this.props);
-        this.props.fetchAllComments();
+        this.props.fetchAllComments(this.props.movieId);
 
       })
       .catch((apiErr) => console.error(apiErr));

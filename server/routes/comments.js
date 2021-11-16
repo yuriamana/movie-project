@@ -5,7 +5,7 @@ const CommentModel = require("../model/Comment");
 //READ
 
 router.get("/comments/", (req, res, next) => { //id du movie
-    CommentModel.find().populate("movie")
+    CommentModel.find()
     .then((comments) => {
       console.log(comments);
       res.status(200).json(comments)
@@ -15,7 +15,7 @@ router.get("/comments/", (req, res, next) => { //id du movie
   });
 
 router.get("/comments/:id", (req, res, next) => { //id du movie
-  CommentModel.find(req.params.id).populate("movie")
+  CommentModel.find({id_film: req.params.id})
   .then((comment) => {
     console.log(comment);
     res.status(200).json(comment)

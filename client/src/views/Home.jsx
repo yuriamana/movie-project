@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Tabs, Tab } from "react-bootstrap";
+import { Container, Tabs, Tab, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
 import AllMovies from "../components/AllMovies";
+// import TopMovies from "../components/TopMovies";
 
 export default class Home extends Component {
   state = {
@@ -16,7 +18,7 @@ export default class Home extends Component {
   async componentDidMount() {
     APIHandler.get("/movies")
       .then(({ data }) => {
-        // console.log("movies", data);
+        console.log("movies", data);
         this.setState({
           movies: data,
         });
@@ -46,7 +48,9 @@ export default class Home extends Component {
               <Tab eventKey="All" title="All">
                 {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
               </Tab>
-              <Tab eventKey="Top" title="Top"></Tab>
+              <Tab eventKey="Top" title="Top">
+              
+              </Tab>
             </Tabs>
           </Container>
         </div>

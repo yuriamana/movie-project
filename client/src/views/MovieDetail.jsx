@@ -77,9 +77,6 @@ export default class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            {/* <span>Actors: {this.state.actorList.map((actor, i) => <p key={i}>{actor.name}</p>)}</span>
-            <br />
-            <span>Genre: {this.state.genreList.map((genre, i) => <p key={i}>{genre.value}</p>)}</span> */}
             <span>IMDB rating : {this.state.imDbRating}</span>
             <br />
             <span className="AGlist">

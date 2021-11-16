@@ -13,15 +13,12 @@ export default class FormCreateComment extends Component {
   };
 
   handleAddComment = (e) => {
-   
     // console.log("here");
     let myComment = {
       comment: this.state.inputText,
       rate: "3",
       id_film: this.props.movieId,
     };
-
-
     // console.log("be4 post");
     APIHandler.post("/comments/create", myComment)
       .then((res) => {
@@ -32,7 +29,6 @@ export default class FormCreateComment extends Component {
         console.log(res);
         console.log(this.props);
         this.props.fetchAllComments(this.props.movieId);
-
       })
       .catch((apiErr) => console.error(apiErr));
     // console.log("after post");

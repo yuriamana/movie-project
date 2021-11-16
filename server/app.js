@@ -73,13 +73,11 @@ const usersRouter = require("./routes/users.js");
 const authRouter = require("./routes/auth.js");
 const commentsRouter = require("./routes/comments.js");
 const moviesRouter = require("./routes/movies.js");
-const searchRouter = require("./routes/search.js");
 
 app.use("/api", authRouter);
 app.use("/api", usersRouter);
 app.use("/api", commentsRouter);
 app.use("/api", moviesRouter);
-app.use("/api", searchRouter);
 
 module.exports = app;
 

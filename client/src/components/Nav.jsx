@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./../styles/nav.css";
-import { Container, Navbar, Form, Button } from "react-bootstrap";
-import Search from "./Search";
+import { Container, Navbar, } from "react-bootstrap";
 
 export default class Nav extends Component {
   state = {
     searchField: "",
     movies: [],
     stats: [],
-  };
+  }
+  
   render() {
-    // const { stats, searchField } = this.state;
-    // const filterMovies = stats.filter((movie) =>
-    //   movie.title.toLowerCase().includes(searchField.toLowerCase())
-    // );
     return (
       <Navbar bg="dark" expand="sm">
         <Container>
@@ -28,17 +24,12 @@ export default class Nav extends Component {
               />
             </Link>
           </Navbar.Brand>
-          <Form className="search">
-            <Search
-              placeholder="Search.."
-              handleChange={(e) =>
-                this.setState({ searchField: e.target.value })
-              }
-            />
-            <Button type="submit" variant="outlien-success" className="Sbutton">
+          {/* <Form className="search">
+            <input type="text" placeholder="Search..." onChange={this.filterOnChange}/> 
+            <Button type="submit" variant="outline-success" className="Sbutton">
               Search
             </Button>
-          </Form>
+          </Form> */}
           <Link to="/signin" className="login">
             Signin
           </Link>

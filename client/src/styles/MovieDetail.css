@@ -45,9 +45,9 @@ h6 {
 .actorblok :hover {
     transition: width 0.5s ,height 0.5s, transform 0.5s;
     transition-timing-function: ease;
-    transform: rotate(5deg);
+    transform: rotate(3deg);
     vertical-align: middle;
-    width: 105px;
-    height: 135px;
+    width: 102px;
+    height: 132px;
     opacity:0.6;
 }

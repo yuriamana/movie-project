@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
 import { Container, Row, Col } from "react-bootstrap";
-// import './../styles/MovieDetail.css'
+import './../styles/MovieDetail.css';
 import FormCreateComment from "../components/form/FormCreateComment";
+import LikeButton from "../components/LikeButton";
+// import './../styles/LikeButton.css';
 
 export default class MovieDetail extends Component {
   state = {
@@ -77,6 +79,7 @@ export default class MovieDetail extends Component {
             <section>Plot: {this.state.title}</section>
             <h5>{this.state.plot}</h5>
             </div>
+            <LikeButton />
             <Row>
         <FormCreateComment movieId={this.props.location.movieId}/>
         </Row>

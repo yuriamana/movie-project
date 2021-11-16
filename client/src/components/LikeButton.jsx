@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../css/LikeButton.css'
+import './../styles/LikeButton.css';
 export class LikeButton extends Component {
 
     state = {

@@ -3,8 +3,7 @@ import APIHandler from "./../api/APIHandler";
 import { Container, Row, Col } from "react-bootstrap";
 import "./../styles/MovieDetail.css";
 import FormCreateComment from "../components/form/FormCreateComment";
-// import LikeButton from "../components/LikeButton";
-// import './../styles/LikeButton.css';
+import LikeButton from "../components/LikeButton";
 
 export default class MovieDetail extends Component {
   state = {
@@ -94,6 +93,7 @@ export default class MovieDetail extends Component {
           <Col md={9} className="plot">
             <h5>Plot: {this.state.title}</h5>
             <h6>{this.state.plot}</h6>
+            <LikeButton />
           </Col>
           <Row>
             <FormCreateComment movieId={this.props.match.params.id} />

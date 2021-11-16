@@ -25,8 +25,8 @@ export default class MovieDetail extends Component {
       },
     ],
     imDbRating: "",
-
     usersRating: "",
+    comments: []
   };
 
   async componentDidMount() {
@@ -50,7 +50,22 @@ export default class MovieDetail extends Component {
         });
       })
       .catch((apiErr) => console.error(apiErr));
+
+      // aussi fetch tous les comments de ce films et setState comments
   }
+
+  async fetchAllComments() {
+    // req ajax ici
+    try {
+      const res = await APIHandler.get("/comments/");
+      this.setState({
+        comments: res.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   render() {
     // console.log(this.props)
     // console.log(this.state.actorList);
@@ -96,7 +111,8 @@ export default class MovieDetail extends Component {
             <LikeButton />
           </Col>
           <Row>
-            <FormCreateComment movieId={this.props.match.params.id} />
+            <FormCreateComment fetchAllComments={this.fetchAllComments} movieId={this.props.match.params.id} />
+            {/* maybe un comp allComments here prenant comments en props*/}
           </Row>
         </Row>
       </Container>

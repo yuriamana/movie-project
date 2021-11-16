@@ -7,10 +7,10 @@ router.get("/search", async (req, res, next) => {
   const movieSearch = MovieModel.find({
     name: regExp
   });
-    .populate({
-      path: "movies",
-      match: { name: regExp }
-    });
+    // .populate({
+    //   path: "movies",
+    //   match: { name: regExp }
+    // });
 
   Promise.all([movieSearch])
     .then(dbRes => res.json({movies: dbRes[0]}))

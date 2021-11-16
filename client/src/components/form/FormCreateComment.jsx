@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import APIHandler from "../../api/APIHandler";
 
 export default class FormCreateComment extends Component {
-    
-  inputText = "";
-
+  state = {
+    inputText: "",
+  };
+  
   handleInputText = (val) => {
     console.log(val);
     this.inputText = val.target.value;
@@ -19,7 +20,7 @@ export default class FormCreateComment extends Component {
       id_author: "618ffb3532facccdf54b37dc",
     };
     console.log("be4 post");
-    APIHandler.post("api/comments/create", myComment)
+    APIHandler.post("/comments/create", myComment)
       .then((res) => {
         console.log("after post result");
         console.log(res);
@@ -34,7 +35,8 @@ export default class FormCreateComment extends Component {
           rows={5}
           cols={30}
           onChange={(value) => this.handleInputText(value)}
-        ></textarea> <br />
+        ></textarea>{" "}
+        <br />
         <button onClick={() => this.handleAddComment()}>
           Add your comments
         </button>

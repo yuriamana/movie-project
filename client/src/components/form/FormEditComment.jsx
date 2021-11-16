@@ -20,7 +20,7 @@ export default class FormEditComment extends Component {
       id_author: "",
     };
     // console.log("be4 post");
-    APIHandler.patch("api/comments/edit", myEditedComment)
+    APIHandler.patch("/comments/edit", myEditedComment)
       .then((res) => {
         // console.log("after post result");
         console.log(res);

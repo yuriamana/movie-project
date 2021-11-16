@@ -29,3 +29,25 @@ h6 {
     line-height: 2rem;
     font-size: 1rem;    
 }
+
+.actorimgs {
+    width: 100px;
+    height: 130px;
+    margin: 3px;
+}
+.actorblok {
+    display: inline-block;
+    width: 120px;
+    text-decoration: none;
+    color: black;
+    font-size: 0.8rem;
+}
+.actorblok :hover {
+    transition: width 0.5s ,height 0.5s, transform 0.5s;
+    transition-timing-function: ease;
+    transform: rotate(5deg);
+    vertical-align: middle;
+    width: 105px;
+    height: 135px;
+    opacity:0.6;
+}

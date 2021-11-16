@@ -2,3 +2,12 @@
 .movieblock {
     margin: 5px;
 }
+.movieblock :hover {
+    transition: width 0.5s ,height 0.5s, transform 0.5s;
+    transition-timing-function: ease;
+    transform: rotate(3deg);
+    vertical-align: middle;
+    opacity:0.6;
+    width: 185px;
+    height: 275px;
+}

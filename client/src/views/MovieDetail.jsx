@@ -3,6 +3,7 @@ import APIHandler from "./../api/APIHandler";
 import { Container, Row, Col } from "react-bootstrap";
 import './../styles/MovieDetail.css'
 import FormCreateComment from "../components/form/FormCreateComment";
+import { Link } from "react-router-dom";
 
 export default class MovieDetail extends Component {
   state = {
@@ -49,7 +50,7 @@ export default class MovieDetail extends Component {
     }
     render() {
       // console.log(this.props)
-      // console.log(this.state.actorList);
+      console.log(this.state.actorList[1]);
       return (
         <Container>
         <br/>
@@ -60,7 +61,7 @@ export default class MovieDetail extends Component {
             <img src={this.state.image} alt="one-movie" width="200px"/>
           </Col>  
 
-          <Col md={6} className="infoText">
+          <Col md={5} className="infoText">
             <span>Director: {this.state.director}</span>
             <br />
             <span>Duration: {this.state.duration}min</span>
@@ -75,8 +76,11 @@ export default class MovieDetail extends Component {
             <span className="AGlist">Genre : {this.state.genreList.map(i => <h6> {i.value}\ </h6>)}</span>
             <br/>
             <span>User's rating : {this.state.usersRating}</span>
-          </Col>  
-            <Col md={9} className="plot">
+            </Col>
+            <Col>
+            <span>{this.state.actorList.map((actor,i) => <Link to="/actor/:id" className="actorblok" key={i}><img className="actorimgs" src={actor.image} alt={actor.name}/>{actor.name}</Link>)}</span>
+            </Col>                                   
+            <Col md={8} className="plot">
             <h5>Plot: {this.state.title}</h5>
             <h6>{this.state.plot}</h6>
             </Col>

@@ -12,7 +12,7 @@ import "./../styles/icon-avatar.css";
 class Signup extends Component {
   state = {
     avatar: "",
-    tmpAvatar: "./../../public/imag/Avatar.jpeg",
+    tmpAvatar: "/imag/Avatar.jpeg",
     username: "admin",
     email: "admin@foobarbaz.io",
     password: "12345",
@@ -68,12 +68,11 @@ class Signup extends Component {
         onChange={this.handleChange}
       >
         <h1 className="title">Signup</h1>
-        <label className="label" htmlFor="avatar">
-        </label>
+        <label className="label" id="avatar" htmlFor="avatar">
         <IconAvatarAdmin avatar={tmpAvatar} clbk={this.handleImage} />
-          avatar
+        </label>
         <label className="label" htmlFor="email">
-          email
+          Email
         </label>
         <input
           className="input"
@@ -83,7 +82,7 @@ class Signup extends Component {
           defaultValue={email}
         />
         <label className="label" htmlFor="username">
-          username
+          Username
         </label>
         <input
           className="input"
@@ -93,7 +92,7 @@ class Signup extends Component {
           defaultValue={username}
         />
         <label className="label" htmlFor="password">
-          password
+          Password
         </label>
         <input
           className="input"
@@ -102,7 +101,7 @@ class Signup extends Component {
           name="password"
           defaultValue={password}
         />
-        <button className="btn">ok</button>
+        <button className="btn">OK</button>
         <p className="parag">
           Already a member ? please{" "}
           <Link to="/signin" className="link">

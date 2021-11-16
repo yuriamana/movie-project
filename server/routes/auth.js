@@ -57,13 +57,14 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
 
 router.post("/signin", (req, res, next) => {
   passport.authenticate("local", (err, user, failureDetails) => {
+    console.log(user, err)
     if (err || !user) return res.status(403).json("invalid user infos"); // 403 : Forbidden
 
     /**
      * req.Login is a passport method
      * check the doc here : http://www.passportjs.org/docs/login/
      */
-    req.logIn(user, function (err) {
+    req.login(user, function (err) {
       /* doc says: When the login operation completes, user will be assigned to req.user. */
       if (err) {
         return res.json({ message: "Something went wrong logging in" });

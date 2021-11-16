@@ -5,6 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "../auth/UserContext";
 import APIHandler from "../api/APIHandler";
 import "./../styles/form.css";
+import { Container } from "react-bootstrap";
 
 export default function Signin(props) {
   const [email, setEmail] = useState("admin@foobarbaz.io");
@@ -24,6 +25,7 @@ export default function Signin(props) {
   return isLoggedIn ? (
     <Redirect to="/dashboard" />
   ) : (
+    <Container>
     <form className="form" onSubmit={handleSubmit}>
       <h1 className="title">Signin</h1>
       <label className="label" htmlFor="email">
@@ -54,5 +56,6 @@ export default function Signin(props) {
         </Link>
       </p>
     </form>
+    </Container>
   );
 }

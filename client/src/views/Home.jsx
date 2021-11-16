@@ -10,8 +10,11 @@ import AllMovies from "../components/AllMovies";
 export default class Home extends Component {
   state = {
     movies: [],
+    searchString: ''
   };
-
+  handleSearch = (text) => {
+    this.setState({searchString: text})
+  }
   async componentDidMount() {
     APIHandler.get("/movies")
       .then(({ data }) => {
@@ -24,14 +27,26 @@ export default class Home extends Component {
   }
 
   render() {
-    const { movies } = this.state;
+    //Filter here 
+
+    let moviesToDisplay = null
+    console.log(this.state.searchString)
+    if (this.state.searchString !== '' && this.state.movies.length > 0) {
+      moviesToDisplay = this.state.movies.filter(movie => {
+        return movie?.title?.toLowerCase()?.includes(this.state.searchString.toLowerCase())
+      })
+    } else {
+      moviesToDisplay = [...this.state.movies]
+    }
+
     return (
       <div className="pagehome">
+      <input type="text" placeholder="Search..." onChange={(e) => this.handleSearch(e.target.value)}/> 
         <div>
           <Container>
             <Tabs defaultActiveKey="profile" className="tabs">
               <Tab eventKey="All" title="All">
-                {movies.length && <AllMovies movies={movies} />}
+                {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
               </Tab>
               <Tab eventKey="Top" title="Top">
               {/* {movies.length && <TopMovies movies={movies} />} */}

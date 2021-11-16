@@ -5,9 +5,10 @@ import "./../styles/MovieDetail.css";
 import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
-
-export default class MovieDetail extends Component {
+import {withRouter} from 'react-router-dom'
+class MovieDetail extends Component {
   state = {
+   
     title: "",
     year: "",
     image: "",
@@ -26,8 +27,8 @@ export default class MovieDetail extends Component {
       },
     ],
     imDbRating: "",
-
     usersRating: "",
+    comments: []
   };
 
   async componentDidMount() {
@@ -48,11 +49,29 @@ export default class MovieDetail extends Component {
           genreList: data.genreList,
           imDbRating: data.imDbRating,
           usersRating: data.usersRating,
+        }, () => {
+          this.fetchAllComments(this.props.match.params.id);
         });
       })
       .catch((apiErr) => console.error(apiErr));
-  }
+      }
+      // aussi fetch tous les comments de ce films et setState comments
+  
+ fetchAllComments = async (id) => {
+    // req ajax ici
+    try {
+      const res = await APIHandler.get("/comments/" + id);
+      this.setState({
+        comments: res.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
   render() {
+  
     // console.log(this.props)
     // console.log(this.state.actorList);
     return (
@@ -97,10 +116,18 @@ export default class MovieDetail extends Component {
             <LikeButton />
           </Col>
           <Row>
-            <FormCreateComment movieId={this.props.match.params.id} />
+            <FormCreateComment fetchAllComments={this.fetchAllComments} movieId={this.props.match.params.id} />
+            {/* maybe un comp allComments here prenant comments en props*/}
           </Row>
-        </Row>
-      </Container>
+          </Row>
+      
+          {this.state.comments.map((comment, i) => {
+            return (
+                <div key={i} className="">{comment.comment}{comment.rate}</div>
+            )
+          })}
+          </Container>
     );
   }
 }
+export default withRouter(MovieDetail)

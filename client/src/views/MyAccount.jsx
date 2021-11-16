@@ -9,23 +9,11 @@ class MyAccount extends Component {
 
   async componentDidMount() {
     console.log(this.props)
-    // return;
-    // APIHandler.get("/movies/:id")
-
-      // .then(({ data }) => {
-      //   console.log("commentedMovies", data);
-      //   this.setState({
-      //     commentedMovies: data,
-      //   });
-      // })
-      // .catch((apiErr) => console.error(apiErr));
   }
   render() {
     return (
       <div>
         Commented movies
-        {/* this.state.commentedMovies.map(movie => {
-            }) */}
       </div>
     );
   }

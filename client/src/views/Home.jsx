@@ -30,13 +30,12 @@ export default class Home extends Component {
     //Filter here 
 
     let moviesToDisplay = null
-    console.log(this.state.searchString)
     if (this.state.searchString !== '' && this.state.movies.length > 0) {
       moviesToDisplay = this.state.movies.filter(movie => {
         return movie?.title?.toLowerCase()?.includes(this.state.searchString.toLowerCase())
       })
     } else {
-      moviesToDisplay = [...this.state.movies].splice(0,20)
+      moviesToDisplay = [...this.state.movies]
     }
 
     return (
@@ -48,8 +47,9 @@ export default class Home extends Component {
               <Tab eventKey="All" title="All" className='active'>
                 {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
               </Tab>
-              <Tab eventKey="Top" title="Top">
-              <TopMovies movies={this.state.movies}/>
+              
+              <Tab eventKey="Top" title="Top" className="active">
+              <TopMovies movies={(this.state.movies).splice(30,70)}/>
               </Tab>
             </Tabs>
           </Container>

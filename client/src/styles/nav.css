@@ -1,17 +1,9 @@
-.Navbar {
-    background-color: cornflowerblue;
-    align-items: Center;
-    justify-content: center;
-    width: 100%;
-}
-
 .movielogo {
     width: 80px;
     height: 80px;
     
 }
 
-.login {
-    text-decoration: none;
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
     color:whitesmoke;
 }

@@ -6,7 +6,7 @@ import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
-import StarRating from "./../StarRating";
+import StarRating from "../components/StarRating";
 import "./../styles/stars.css"
 
 class MovieDetail extends Component {

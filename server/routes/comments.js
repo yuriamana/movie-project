@@ -52,13 +52,13 @@ router.patch("/:id", (req,res) => {
 
 // DELETE 
 
-router.delete("/:id", (req,res) => {
-  CommentModel
-    .findByIdAndDelete(req.params.id)
-    .then((comment) => res.status(200).json(comment))
-    .catch((err) => {
-      console.error(err);
-    });
-});
+router.delete("/comments/:id", async (req,res, next) => {
+  try {
+    const deletedComment = await CommentModel.findByIdAndDelete(req.params.id)
+    res.status(200).json(deletedComment)
+  } catch(error) {
+    console.error(error);
+  }
+})
 
 module.exports = router;

@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
 import StarRating from "./../StarRating";
-import "./../styles/stars.css"
+import "./../styles/stars.css";
+import FormEditComment from "../components/form/FormEditComment";
 
 class MovieDetail extends Component {
  state =
@@ -66,7 +67,6 @@ class MovieDetail extends Component {
   fetchAllComments = async (id) => {
     // req ajax ici
     try {
-      
       const res = await APIHandler.get("/comments/" + id);
       console.log(res.data)
       this.setState({
@@ -86,6 +86,15 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
+
+  // handleEditComment = async (id) => {
+  //   try {
+  //     await APIHandler.patch(`/comments/${id}`);
+  //     this.fetchAllComments(this.props.match.params.id);
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
 
   render() {
     // console.log(this.props)
@@ -151,21 +160,20 @@ class MovieDetail extends Component {
               movieId={this.props.match.params.id}
             />
           </Row>
-        </Row>
-        {this.state.comments.map((comment, i) => {
+        {/* {this.state.comments.map((comment, i) => {
           return (
-            <div key={i} className="">
-              {comment.comment}
-              {comment.rate}
-              <button onClick={() => this.handleDelete(comment._id)}>
-              <i className="fas fa-trash">Delete</i>
-              </button>
-              <button>
-              <i className="fas fa-edit">Edit</i>
-              </button>  
-            </div>
+              <div contenteditable="true" key={i} className="" onInput={e => handleEditComment(comment.id, e.currentTarget.textContent)}>
+                {comment.comment}
+                {comment.rate}
+                <button onClick={() => this.handleDelete(comment._id)}>
+                <i className="fas fa-trash">Delete</i>
+                </button>
+                <button>
+                <i className="fas fa-edit">Edit</i>
+                </button>  
+              </div>
           );
-        })}
+        })} */}
       </Container>
     );
   }

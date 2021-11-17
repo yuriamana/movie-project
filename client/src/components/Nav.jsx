@@ -22,7 +22,7 @@ export default class Navi extends Component {
                 className="movielogo"
               />
             </Link>
-
+            <span className="ourname">PYJ CINEMA</span>
           <Nav className="text-center mt-4 mb-4">
           <NavDropdown title="Dropdown" id="nav-dropdown" active="true" menuRole="menu">
           <NavDropdown.Item eventKey="4.1" href="/signin">Signin</NavDropdown.Item>

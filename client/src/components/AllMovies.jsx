@@ -1,9 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Container, Col, } from "react-bootstrap";
+import { Row, Container, Col } from "react-bootstrap";
 import "./../styles/AllMovies.css";
 import { Link } from "react-router-dom";
-
 
 export default function AllMovies({ movies }) {
   const copy = [...movies]

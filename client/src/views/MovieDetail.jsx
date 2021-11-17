@@ -10,8 +10,7 @@ import StarRating from "../components/StarRating";
 import "./../styles/stars.css"
 
 class MovieDetail extends Component {
- state =
-  {
+  state = {
     title: "",
     year: "",
     image: "",
@@ -30,7 +29,7 @@ class MovieDetail extends Component {
       },
     ],
     imDbRating: "",
-    usersRating: "",
+    usersRating: [],
     comments: [],
   };
 
@@ -60,15 +59,15 @@ class MovieDetail extends Component {
         );
       })
       .catch((apiErr) => console.error(apiErr));
+      this.fetchAllRatings(this.props.match.params.id)
   }
   // aussi fetch tous les comments de ce films et setState comments
 
   fetchAllComments = async (id) => {
     // req ajax ici
     try {
-      
       const res = await APIHandler.get("/comments/" + id);
-      console.log(res.data)
+      console.log(res.data);
       this.setState({
         comments: res.data,
       });
@@ -76,7 +75,18 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
-  
+
+  fetchAllRatings = async(id) => {
+    try {
+      const res = await APIHandler.get("/rates/" + id);
+      this.setState({
+        rates: res.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   
   handleDelete = async (id) => {
     try {
@@ -87,9 +97,25 @@ class MovieDetail extends Component {
     }
   };
 
+  handleEditComment = async (e, id, text) => {
+    console.log(text)
+    if(e.key === 'Enter') {
+      try {
+        await APIHandler.patch(`/comments/${id}`, { comment: text });
+        this.fetchAllComments(this.props.match.params.id);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   render() {
     // console.log(this.props)
     // console.log(this.state.actorList);
+    let avgRate = null
+    if(this.state.usersRating.length > 0) {
+      avgRate = (this.state.usersRating.reduce((acc, val) => acc + val.rate ,0)/this.state.usersRating.length).toFixed(2)
+    }
 
     return (
       <Container>
@@ -109,7 +135,7 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Actors:{" "}
               {this.state.actorList.map((actor, i) => (
-                <h6 key={i}>{actor.name}/</h6>
+                <h6 key={i}>{actor.name} | </h6>
               ))}
             </span>
             <br />
@@ -118,14 +144,16 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Genre :{" "}
               {this.state.genreList.map((genre, i) => (
-                <h6 key={i}> {genre.value}\ </h6>
+                <h6 key={i}>{genre.value} | </h6>
               ))}
             </span>
             <br />
-            <span className="userrating">User's rating : <StarRating/></span>
+            <span>User's rating :
+            {/* calcul de l'average du rating */}
+            <StarRating />
+            </span>
           </Col>
-          <Row>
-          <Col md={10}>
+          <Col>
             <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>
@@ -138,15 +166,9 @@ class MovieDetail extends Component {
                 </Link>
               ))}
             </span>
-            </Col>
-          </Row>
-          </Row>
-          <Col md={8} className="plot">
-            <h5>{this.state.title}</h5>
-            <h6>{this.state.plot}</h6>
-            <LikeButton />
           </Col>
-          <Row>
+          <p>{avgRate}</p>
+            <StarRating film={this.props.match.params.id}/>
             <FormCreateComment
               fetchAllComments={this.fetchAllComments}
               movieId={this.props.match.params.id}
@@ -154,16 +176,28 @@ class MovieDetail extends Component {
           </Row>
         {this.state.comments.map((comment, i) => {
           return (
-            <div key={i} className="">
-              {comment.comment}
-              {comment.rate}
+            <>      
+              <div
+                contentEditable="true"
+                key={i}
+                className="2"
+                onKeyPress={(e) =>
+                  this.handleEditComment(
+                    e,
+                    comment._id,
+                    e.currentTarget.textContent
+                  )
+                }
+              >
+                {comment.comment}
+              </div>
               <button onClick={() => this.handleDelete(comment._id)}>
-              <i className="fas fa-trash">Delete</i>
+                <i className="fas fa-trash">Delete</i>
               </button>
-              <button>
-              <i className="fas fa-edit">Edit</i>
-              </button>  
-            </div>
+              {/* <button>
+                <i className="fas fa-edit">Edit</i>
+              </button> */}
+            </>
           );
         })}
       </Container>

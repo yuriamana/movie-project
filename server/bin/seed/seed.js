@@ -20,7 +20,7 @@ mongoose
     for (let i = 0; i < 100; i++) {
       const id = movies.items[i].id;
       const { data } = await axios.get(
-        `https://imdb-api.com/en/API/Title/k_10znj6fx/${id}`
+        `https://imdb-api.com/en/API/Title//${id}`
       );
       await Movies.create(data);
     }
@@ -35,4 +35,5 @@ mongoose
   //key API - IMDB
   // Joey: k_by6fp93n
   // Yuki: k_10znj6fx
+  // Marc: k_12345678
   

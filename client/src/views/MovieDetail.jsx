@@ -11,8 +11,7 @@ import "./../styles/stars.css";
 import FormEditComment from "../components/form/FormEditComment";
 
 class MovieDetail extends Component {
- state =
-  {
+  state = {
     title: "",
     year: "",
     image: "",
@@ -68,7 +67,7 @@ class MovieDetail extends Component {
     // req ajax ici
     try {
       const res = await APIHandler.get("/comments/" + id);
-      console.log(res.data)
+      console.log(res.data);
       this.setState({
         comments: res.data,
       });
@@ -76,8 +75,7 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
-  
-  
+
   handleDelete = async (id) => {
     try {
       await APIHandler.delete(`/comments/${id}`);
@@ -87,14 +85,14 @@ class MovieDetail extends Component {
     }
   };
 
-  // handleEditComment = async (id) => {
-  //   try {
-  //     await APIHandler.patch(`/comments/${id}`);
-  //     this.fetchAllComments(this.props.match.params.id);
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
-  // }
+  handleEditComment = async (id, text) => {
+    try {
+      await APIHandler.patch(`/comments/${id}`, { comment: text });
+      this.fetchAllComments(this.props.match.params.id);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   render() {
     // console.log(this.props)
@@ -131,50 +129,64 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span className="userrating">User's rating : <StarRating/></span>
+            <span className="userrating">
+              User's rating : <StarRating />
+            </span>
           </Col>
           <Row>
-          <Col md={10}>
-            <span>
-              {this.state.actorList.map((actor, i) => (
-                <Link to="/actor/:id" className="actorblok" key={i}>
-                  <img
-                    className="actorimgs"
-                    src={actor.image}
-                    alt={actor.name}
-                  />
-                  {actor.name}
-                </Link>
-              ))}
-            </span>
+            <Col md={10}>
+              <span>
+                {this.state.actorList.map((actor, i) => (
+                  <Link to="/actor/:id" className="actorblok" key={i}>
+                    <img
+                      className="actorimgs"
+                      src={actor.image}
+                      alt={actor.name}
+                    />
+                    {actor.name}
+                  </Link>
+                ))}
+              </span>
             </Col>
           </Row>
-          </Row>
-          <Col md={8} className="plot">
-            <h5>{this.state.title}</h5>
-            <h6>{this.state.plot}</h6>
-            <LikeButton />
-          </Col>
-          <Row>
-            <FormCreateComment
-              fetchAllComments={this.fetchAllComments}
-              movieId={this.props.match.params.id}
-            />
-          </Row>
-        {/* {this.state.comments.map((comment, i) => {
+        </Row>
+        <Col md={8} className="plot">
+          <h5>{this.state.title}</h5>
+          <h6>{this.state.plot}</h6>
+          <LikeButton />
+        </Col>
+        <Row>
+          <FormCreateComment
+            fetchAllComments={this.fetchAllComments}
+            movieId={this.props.match.params.id}
+          />
+        </Row>
+        {this.state.comments.map((comment, i) => {
           return (
-              <div contenteditable="true" key={i} className="" onInput={e => handleEditComment(comment.id, e.currentTarget.textContent)}>
+            <>
+              <div
+                contentEditable="true"
+                key={i}
+                className=""
+                onInput={(e) =>
+                  this.handleEditComment(
+                    comment._id,
+                    e.currentTarget.textContent
+                  )
+                }
+              >
                 {comment.comment}
                 {comment.rate}
-                <button onClick={() => this.handleDelete(comment._id)}>
-                <i className="fas fa-trash">Delete</i>
-                </button>
-                <button>
-                <i className="fas fa-edit">Edit</i>
-                </button>  
               </div>
+              <button onClick={() => this.handleDelete(comment._id)}>
+                <i className="fas fa-trash">Delete</i>
+              </button>
+              {/* <button>
+                <i className="fas fa-edit">Edit</i>
+              </button> */}
+            </>
           );
-        })} */}
+        })}
       </Container>
     );
   }

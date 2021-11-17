@@ -55,7 +55,7 @@ router.patch("/comments/:id/edit", (req,res) => {
 router.delete("/comments/:id", (req,res) => {
   CommentModel
     .findByIdAndDelete(req.params.id)
-    .then((album) => res.status(200).json(album))
+    .then((comment) => res.status(200).json(comment))
     .catch((err) => {
       console.error(err);
     });

@@ -73,7 +73,7 @@ class MovieDetail extends Component {
 
   handleDelete = async (id) => {
     try {
-      await APIHandler.delete(`/movies/${id}`);
+      await APIHandler.delete(`/comments/${id}`);
       this.fetchAllComments();
     } catch (err) {
       console.error(err);

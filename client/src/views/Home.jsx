@@ -45,11 +45,11 @@ export default class Home extends Component {
         <div>
           <Container>
             <Tabs defaultActiveKey="profile" className="tabs">
-              <Tab eventKey="All" title="All">
+              <Tab eventKey="All" title="All" className='active'>
                 {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
               </Tab>
               <Tab eventKey="Top" title="Top">
-              {/* <TopMovies/> */}
+              <TopMovies movies={this.state.movies}/>
               </Tab>
             </Tabs>
           </Container>

@@ -6,10 +6,8 @@ import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
-import Stars from "./../components/Stars";
 import StarRating from "./../StarRating";
-// import { useAuth } from "./UserContext";
-
+import "./../styles/stars.css"
 
 class MovieDetail extends Component {
  state =
@@ -124,14 +122,10 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <div>
-                <StarRating/>
-            </div>
-            <span>User's rating : {this.state.usersRating}</span>
-            <Stars/>
+            <span>User's rating : </span>
+            <StarRating/>
           </Col>
-          <Row>
-              <Col md={8}>
+          <Col>
             <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>

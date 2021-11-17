@@ -8,7 +8,7 @@ const CommentSchema = new Schema({
       type: String,
       maxlength: 500
   },
-  rate: String
+  // rate: String
 });
 
 const CommentModel = mongoose.model("comment", CommentSchema);

@@ -67,7 +67,9 @@ class MovieDetail extends Component {
   fetchAllComments = async (id) => {
     // req ajax ici
     try {
+      
       const res = await APIHandler.get("/comments/" + id);
+      console.log(res.data)
       this.setState({
         comments: res.data,
       });
@@ -75,11 +77,12 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
-
+  
+  
   handleDelete = async (id) => {
     try {
       await APIHandler.delete(`/comments/${id}`);
-      this.fetchAllComments();
+      this.fetchAllComments(this.props.match.params.id);
     } catch (err) {
       console.error(err);
     }
@@ -121,10 +124,9 @@ class MovieDetail extends Component {
             </span>
             <br />
             <span>User's rating : {this.state.usersRating}</span>
+            <Stars/>
           </Col>
-          <div>
-             <Stars/>
-          </div>
+      
 
           <Col>
             <span>
@@ -161,7 +163,7 @@ class MovieDetail extends Component {
               <i className="fas fa-trash">Delete</i>
               </button>
               <button>
-              <i class="fas fa-edit">Edit</i>
+              <i className="fas fa-edit">Edit</i>
               </button>  
             </div>
           );

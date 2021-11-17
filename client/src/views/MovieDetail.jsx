@@ -163,11 +163,11 @@ class MovieDetail extends Component {
         </Row>
         {this.state.comments.map((comment, i) => {
           return (
-            <>
+            <>      
               <div
                 contentEditable="true"
                 key={i}
-                className=""
+                className="2"
                 onInput={(e) =>
                   this.handleEditComment(
                     comment._id,
@@ -176,7 +176,6 @@ class MovieDetail extends Component {
                 }
               >
                 {comment.comment}
-                {comment.rate}
               </div>
               <button onClick={() => this.handleDelete(comment._id)}>
                 <i className="fas fa-trash">Delete</i>

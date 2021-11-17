@@ -24,7 +24,7 @@ export class LikeButton extends Component {
             <div className='container-button'>
                 <button onClick={this.handleIncrement} style={{
                     backgroundColor: this.randomColor(),
-                    border: '2px solid ' + this.randomColor()
+                    // border: '2px solid ' + this.randomColor()
                 }}>{this.state.count} {this.state.count < 2 ? 'Like' : 'Likes'}</button>
             </div>
         )

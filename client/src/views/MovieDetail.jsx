@@ -44,7 +44,7 @@ class MovieDetail extends Component {
         this.setState(
           {
             title: data.title,
-            year: data.year.split(0, 1),
+            year: data.year,
             director: data.directors,
             duration: data.runtimeMins,
             plot: data.plot,
@@ -66,7 +66,9 @@ class MovieDetail extends Component {
   fetchAllComments = async (id) => {
     // req ajax ici
     try {
+      
       const res = await APIHandler.get("/comments/" + id);
+      console.log(res.data)
       this.setState({
         comments: res.data,
       });
@@ -74,11 +76,12 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
-
+  
+  
   handleDelete = async (id) => {
     try {
       await APIHandler.delete(`/comments/${id}`);
-      this.fetchAllComments();
+      this.fetchAllComments(this.props.match.params.id);
     } catch (err) {
       console.error(err);
     }
@@ -135,9 +138,10 @@ class MovieDetail extends Component {
                 </Link>
               ))}
             </span>
-          </Col>
+            </Col>
+          </Row>
           <Col md={8} className="plot">
-            <h5>Plot: {this.state.title}</h5>
+            <h5>{this.state.title}</h5>
             <h6>{this.state.plot}</h6>
             <LikeButton />
           </Col>
@@ -157,7 +161,7 @@ class MovieDetail extends Component {
               <i className="fas fa-trash">Delete</i>
               </button>
               <button>
-              <i class="fas fa-edit">Edit</i>
+              <i className="fas fa-edit">Edit</i>
               </button>  
             </div>
           );

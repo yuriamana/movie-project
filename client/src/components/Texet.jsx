@@ -1,44 +1,52 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Container, Col, Pagination } from "react-bootstrap";
-import "./../styles/AllMovies.css";
-import { Link } from "react-router-dom";
+// import React from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { Row, Container, Col, Pagination } from "react-bootstrap";
+// import "./../styles/AllMovies.css";
+// import { Link } from "react-router-dom";
 
-export default class Texet extends Component {
-  state = {
-    movies: null,
-  };
 
-  async componentDidMount() {
-    console.log(this.props);
-    try {
-      const res = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon/" + this.props.match.params.name
-      );
-      // console.log("res.data");
-      console.log(res.data , this.props);
-      this.setState({
-        pokemon: res.data,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  }
+// export default function AllMovies({ movies }) {
+//   return (
+//     <Container>
+//       <Row>
+//         {movies.map((movie, i) => movie.genreList.key.inclues(Drama)(
+//           <Col key={i} className="movieblock">
+//             <Link
+//               to={{
+//                 pathname: `/movie/${movie._id}`,
+//                 movieId: movie._id,
+//               }}
+//             >
+//               <img
+//                 src={movie.image}
+//                 alt="movies"
+//                 width="180px"
+//                 height="270px"
+//               />
+//             </Link>
+//           </Col>
+//         ))}
+//       </Row>
+//       <Row>
+//       <Pagination>
+//         <Pagination.First />
+//         <Pagination.Prev />
+//         <Pagination.Item>{1}</Pagination.Item>
+//         <Pagination.Ellipsis />
 
-  render() {
-    const { pokemon } = this.state; // destructuring here !!!
+//         <Pagination.Item>{10}</Pagination.Item>
+//         <Pagination.Item>{11}</Pagination.Item>
+//         <Pagination.Item active>{12}</Pagination.Item>
+//         <Pagination.Item>{13}</Pagination.Item>
+//         <Pagination.Item disabled>{14}</Pagination.Item>
 
-    return !pokemon ? (
-      <p>loading</p>
-    ) : (
-      <div>
-        <h1>Pokemon detail</h1>
-        <p>{pokemon.name}</p>
-        <p>experience {pokemon.base_experience}</p>
-        <img src={pokemon.sprites.front_default} alt="yolo" />
-        <img src={pokemon.sprites.back_default} alt="yolo" />
-      </div>
-    );
-  }
-}
+//         <Pagination.Ellipsis />
+//         <Pagination.Item>{20}</Pagination.Item>
+//         <Pagination.Next />
+//         <Pagination.Last />
+// </Pagination>
+//       </Row>
+
+//     </Container>
+//   );
+// }

@@ -27,8 +27,8 @@ export default function AllMovies({ movies }) {
           </Col>
         ))}
       </Row>
-      <Row>
-      <Pagination>
+      {/* <Row>
+       <Pagination>
         <Pagination.First />
         <Pagination.Prev />
         <Pagination.Item>{1}</Pagination.Item>
@@ -44,8 +44,8 @@ export default function AllMovies({ movies }) {
         <Pagination.Item>{20}</Pagination.Item>
         <Pagination.Next />
         <Pagination.Last />
-</Pagination>
-      </Row>
+   // </Pagination>
+      </Row> */}
 
     </Container>
   );

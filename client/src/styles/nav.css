@@ -2,6 +2,7 @@
     background-color: cornflowerblue;
     align-items: Center;
     justify-content: center;
+    width: 100%;
 }
 
 .movielogo {
@@ -10,17 +11,13 @@
     
 }
 
-#gsearch {
-    width: 288px;
-}
-
 .login {
     text-decoration: none;
-    color:#e9f175;
+    color:whitesmoke;
 
 }
 
-.Sbutton {
+/* .Sbutton {
     text-align: center;
     line-height: 5px;   
     margin: 5px;
@@ -30,4 +27,4 @@
     display: flex;
     justify-content: space-between;
     justify-items: center;
-}
+} */

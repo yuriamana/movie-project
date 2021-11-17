@@ -6,8 +6,13 @@ import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
+import Stars from "./../components/Stars";
+// import { useAuth } from "./UserContext";
+
+
 class MovieDetail extends Component {
-  state = {
+ state =
+  {
     title: "",
     year: "",
     image: "",
@@ -48,7 +53,7 @@ class MovieDetail extends Component {
             actorList: data.actorList,
             genreList: data.genreList,
             imDbRating: data.imDbRating,
-            usersRating: data.usersRating,
+            // usersRating: data.usersRating,
           },
           () => {
             this.fetchAllComments(this.props.match.params.id);
@@ -83,6 +88,7 @@ class MovieDetail extends Component {
   render() {
     // console.log(this.props)
     // console.log(this.state.actorList);
+
     return (
       <Container>
         <br />
@@ -116,6 +122,10 @@ class MovieDetail extends Component {
             <br />
             <span>User's rating : {this.state.usersRating}</span>
           </Col>
+          <div>
+             <Stars/>
+          </div>
+
           <Col>
             <span>
               {this.state.actorList.map((actor, i) => (

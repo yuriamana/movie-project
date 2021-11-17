@@ -5,7 +5,7 @@ import { Container, Tabs, Tab } from "react-bootstrap";
 import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
 import AllMovies from "../components/AllMovies";
-// import TopMovies from "../components/TopMovies";
+import TopMovies from "../components/TopMovies";
 
 export default class Home extends Component {
   state = {
@@ -36,12 +36,12 @@ export default class Home extends Component {
         return movie?.title?.toLowerCase()?.includes(this.state.searchString.toLowerCase())
       })
     } else {
-      moviesToDisplay = [...this.state.movies]
+      moviesToDisplay = [...this.state.movies].splice(0,20)
     }
 
     return (
       <div className="pagehome">
-      <input type="text" placeholder="Search..." onChange={(e) => this.handleSearch(e.target.value)}/> 
+      <input type="text" placeholder="Search..." className="inpSearch" onChange={(e) => this.handleSearch(e.target.value)}/> 
         <div>
           <Container>
             <Tabs defaultActiveKey="profile" className="tabs">
@@ -49,7 +49,7 @@ export default class Home extends Component {
                 {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
               </Tab>
               <Tab eventKey="Top" title="Top">
-              
+              {/* <TopMovies/> */}
               </Tab>
             </Tabs>
           </Container>

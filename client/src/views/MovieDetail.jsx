@@ -46,7 +46,7 @@ class MovieDetail extends Component {
         this.setState(
           {
             title: data.title,
-            year: data.year.split(0, 1),
+            year: data.year,
             director: data.directors,
             duration: data.runtimeMins,
             plot: data.plot,
@@ -130,9 +130,8 @@ class MovieDetail extends Component {
             <span>User's rating : {this.state.usersRating}</span>
             <Stars/>
           </Col>
-      
-
-          <Col>
+          <Row>
+              <Col md={8}>
             <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>
@@ -145,9 +144,10 @@ class MovieDetail extends Component {
                 </Link>
               ))}
             </span>
-          </Col>
+            </Col>
+          </Row>
           <Col md={8} className="plot">
-            <h5>Plot: {this.state.title}</h5>
+            <h5>{this.state.title}</h5>
             <h6>{this.state.plot}</h6>
             <LikeButton />
           </Col>

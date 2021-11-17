@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
 import StarRating from "./../StarRating";
-import "./../styles/stars.css"
+import "./../styles/stars.css";
+import FormEditComment from "../components/form/FormEditComment";
 
 class MovieDetail extends Component {
- state =
-  {
+  state = {
     title: "",
     year: "",
     image: "",
@@ -30,7 +30,7 @@ class MovieDetail extends Component {
       },
     ],
     imDbRating: "",
-    usersRating: "",
+    usersRating: [],
     comments: [],
   };
 
@@ -60,6 +60,7 @@ class MovieDetail extends Component {
         );
       })
       .catch((apiErr) => console.error(apiErr));
+      this.fetchAllRatings(this.props.match.params.id)
   }
   // aussi fetch tous les comments de ce films et setState comments
 
@@ -67,7 +68,7 @@ class MovieDetail extends Component {
     // req ajax ici
     try {
       const res = await APIHandler.get("/comments/" + id);
-      console.log(res.data)
+      console.log(res.data);
       this.setState({
         comments: res.data,
       });
@@ -97,9 +98,22 @@ class MovieDetail extends Component {
     }
   };
 
+  handleEditComment = async (id, text) => {
+    try {
+      await APIHandler.patch(`/comments/${id}`, { comment: text });
+      this.fetchAllComments(this.props.match.params.id);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   render() {
     // console.log(this.props)
     // console.log(this.state.actorList);
+    let avgRate = null
+    if(this.state.usersRating.length > 0) {
+      avgRate = (this.state.usersRating.reduce((acc, val) => acc + val.rate ,0)/this.state.usersRating.length).toFixed(2)
+    }
 
     return (
       <Container>
@@ -150,14 +164,8 @@ class MovieDetail extends Component {
                 </Link>
               ))}
             </span>
-            </Col>
-          </Row>
-          <Col md={8} className="plot">
-            <h5>{this.state.title}</h5>
-            <h6>{this.state.plot}</h6>
-            <LikeButton />
           </Col>
-          <Row>
+          <p>{avgRate}</p>
             <StarRating film={this.props.match.params.id}/>
             <FormCreateComment
               fetchAllComments={this.fetchAllComments}
@@ -166,16 +174,27 @@ class MovieDetail extends Component {
           </Row>
         {this.state.comments.map((comment, i) => {
           return (
-            <div key={i} className="">
-              {comment.comment}
-              {comment.rate}
+            <>      
+              <div
+                contentEditable="true"
+                key={i}
+                className="2"
+                onInput={(e) =>
+                  this.handleEditComment(
+                    comment._id,
+                    e.currentTarget.textContent
+                  )
+                }
+              >
+                {comment.comment}
+              </div>
               <button onClick={() => this.handleDelete(comment._id)}>
-              <i className="fas fa-trash">Delete</i>
+                <i className="fas fa-trash">Delete</i>
               </button>
-              <button>
-              <i className="fas fa-edit">Edit</i>
-              </button>  
-            </div>
+              {/* <button>
+                <i className="fas fa-edit">Edit</i>
+              </button> */}
+            </>
           );
         })}
       </Container>

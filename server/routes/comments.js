@@ -37,11 +37,10 @@ router.post("/comments", (req,res,next) => {
       
     });
 
-// UPDATE
+//EDIT
+
 router.patch("/comments/:id", (req,res) => {
-    CommentModel.findByIdAndUpdate({
-        ...req.body,
-    },{new: true})
+    CommentModel.findByIdAndUpdate(req.params.id ,{comment: req.body.comment}, {new: true})
     .then((comment) => {
         res.status(201).json(comment)
       })

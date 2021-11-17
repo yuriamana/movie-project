@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from "react";
 import APIHandler from "./api/APIHandler";
-
+import {useAuth} from './auth/UserContext'
 const StarRating = ({film}) => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+    const [alreadyRated, setAlreadyRated] = useState(false)
+    const {currentUser} = useAuth()
+    useEffect(() => {
+      if(currentUser) {
+        APIHandler.get(`/rates/${currentUser._id}/${film}`)
+        .then(() => {
+          setAlreadyRated(true)
+        })
+        .catch(() => {
+          setAlreadyRated(false)
+        })
+      }
+    },[])
+
   useEffect(() => {
-    APIHandler.post('/rates/'+ film, {rating}).then((doc) => {
-      console.log('cool')
-    }).catch(e => console.error(e))
-  },[rating, film])
+    if (!alreadyRated) {
+      APIHandler.post('/rates/'+ film, {rating}).then((doc) => {
+        console.log('cool')
+      }).catch(e => console.error(e))
+    }
+  },[rating, film, alreadyRated])
 
     return (
       <div className="star-rating">

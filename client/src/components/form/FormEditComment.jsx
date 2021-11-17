@@ -2,22 +2,21 @@ import React, { Component } from "react";
 import APIHandler from "../../api/APIHandler";
 
 export default class FormEditComment extends Component {
-  state= {
-      inputText:""
-  }
+  state = {
+    editInputComment: "",
+  };
 
-  handleInputText = (val) => {
+  handleInputComment = (val) => {
     console.log(val);
-    this.inputText = val.target.value;
+    this.editInputComment = val.target.value;
   };
 
   handleEditComment = () => {
     // console.log("here");
     let myEditedComment = {
-      comment: this.inputText,
+      comment: this.state.editInputComment,
       rate: "",
       id_film: this.props.movieId,
-      id_author: "",
     };
     // console.log("be4 post");
     APIHandler.patch("/comments/edit", myEditedComment)
@@ -30,10 +29,10 @@ export default class FormEditComment extends Component {
   };
 
   handleChange = (evt) => {
-        this.setState({
-          [evt.target.inputText]: evt.target.value
-        });
-      }; 
+    this.setState({
+      [evt.target.inputText]: evt.target.value,
+    });
+  };
 
   render() {
     return (
@@ -41,7 +40,7 @@ export default class FormEditComment extends Component {
         <textarea
           rows={5}
           cols={30}
-          onChange={(value) => this.handleInputText(value)}
+          onChange={(value) => this.handleInputComment(value)}
         ></textarea>
         <button onClick={() => this.handleEditComment()}>
           Edit your comments

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./../styles/nav.css";
-import { Container, Navbar, } from "react-bootstrap";
+import { Container, Navbar,Nav } from "react-bootstrap";
 
-export default class Nav extends Component {
+export default class Navi extends Component {
   state = {
     searchField: "",
     movies: [],
@@ -13,7 +13,7 @@ export default class Nav extends Component {
   
   render() {
     return (
-      <Navbar bg="dark" expand="sm">
+      <Navbar bg="light" expand="sm">
         <Container>
           <Navbar.Brand>
             <Link to="/">
@@ -24,18 +24,19 @@ export default class Nav extends Component {
               />
             </Link>
           </Navbar.Brand>
-          {/* <Form className="search">
-            <input type="text" placeholder="Search..." onChange={this.filterOnChange}/> 
-            <Button type="submit" variant="outline-success" className="Sbutton">
-              Search
-            </Button>
-          </Form> */}
-          <Link to="/signin" className="login">
-            Signin
-          </Link>
-          <Link to="/signup" className="login">
-            Signup
-          </Link>
+          <Nav className="text-center mt-4 mb-4">
+          <Nav.Item className="login">
+            <Nav.Link href="/signin">Signin</Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="login">
+            <Nav.Link href="/signup">Signup</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="disabled" disabled>
+              About
+            </Nav.Link>
+        </Nav.Item>
+        </Nav>
         </Container>
       </Navbar>
     );

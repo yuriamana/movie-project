@@ -18,6 +18,7 @@ const StarRating = () => {
             >
               <span className="star">&#9733;</span>
             </button>
+
           );
         })}
       </div>
@@ -25,3 +26,5 @@ const StarRating = () => {
   };
 
 export default StarRating
+
+//créer les routes pour aller récup les infos dans la db 

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
 import Stars from "./../components/Stars";
+import StarRating from "./../StarRating";
 // import { useAuth } from "./UserContext";
 
 
@@ -123,6 +124,9 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
+            <div>
+                <StarRating/>
+            </div>
             <span>User's rating : {this.state.usersRating}</span>
             <Stars/>
           </Col>

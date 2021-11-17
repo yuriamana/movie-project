@@ -18,3 +18,4 @@ function Stars({children}) {
 }
 
 export default Stars
+

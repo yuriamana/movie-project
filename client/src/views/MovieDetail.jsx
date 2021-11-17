@@ -131,10 +131,10 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>User's rating : </span>
-            <StarRating/>
+            <span className="userrating">User's rating : <StarRating/></span>
           </Col>
-          <Col>
+          <Row>
+          <Col md={10}>
             <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>
@@ -148,6 +148,7 @@ class MovieDetail extends Component {
               ))}
             </span>
             </Col>
+          </Row>
           </Row>
           <Col md={8} className="plot">
             <h5>{this.state.title}</h5>

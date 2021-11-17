@@ -5,10 +5,9 @@ import "./../styles/MovieDetail.css";
 import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 class MovieDetail extends Component {
   state = {
-   
     title: "",
     year: "",
     image: "",
@@ -28,7 +27,7 @@ class MovieDetail extends Component {
     ],
     imDbRating: "",
     usersRating: "",
-    comments: []
+    comments: [],
   };
 
   async componentDidMount() {
@@ -38,26 +37,29 @@ class MovieDetail extends Component {
     //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
     APIHandler.get(`/movie/${this.props.match.params.id}`)
       .then(({ data }) => {
-        this.setState({
-          title: data.title,
-          year: data.year.split(0, 1),
-          director: data.directors,
-          duration: data.runtimeMins,
-          plot: data.plot,
-          image: data.image,
-          actorList: data.actorList,
-          genreList: data.genreList,
-          imDbRating: data.imDbRating,
-          usersRating: data.usersRating,
-        }, () => {
-          this.fetchAllComments(this.props.match.params.id);
-        });
+        this.setState(
+          {
+            title: data.title,
+            year: data.year.split(0, 1),
+            director: data.directors,
+            duration: data.runtimeMins,
+            plot: data.plot,
+            image: data.image,
+            actorList: data.actorList,
+            genreList: data.genreList,
+            imDbRating: data.imDbRating,
+            usersRating: data.usersRating,
+          },
+          () => {
+            this.fetchAllComments(this.props.match.params.id);
+          }
+        );
       })
       .catch((apiErr) => console.error(apiErr));
-      }
-      // aussi fetch tous les comments de ce films et setState comments
-  
- fetchAllComments = async (id) => {
+  }
+  // aussi fetch tous les comments de ce films et setState comments
+
+  fetchAllComments = async (id) => {
     // req ajax ici
     try {
       const res = await APIHandler.get("/comments/" + id);
@@ -69,9 +71,16 @@ class MovieDetail extends Component {
     }
   };
 
+  handleDelete = async (id) => {
+    try {
+      await APIHandler.delete(`/movies/${id}`);
+      this.fetchAllComments();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   render() {
-  
     // console.log(this.props)
     // console.log(this.state.actorList);
     return (
@@ -106,28 +115,46 @@ class MovieDetail extends Component {
             </span>
             <br />
             <span>User's rating : {this.state.usersRating}</span>
-            </Col>
-            <Col>
-            <span>{this.state.actorList.map((actor,i) => <Link to="/actor/:id" className="actorblok" key={i}><img className="actorimgs" src={actor.image} alt={actor.name}/>{actor.name}</Link>)}</span>
-            </Col>                                   
-            <Col md={8} className="plot">
+          </Col>
+          <Col>
+            <span>
+              {this.state.actorList.map((actor, i) => (
+                <Link to="/actor/:id" className="actorblok" key={i}>
+                  <img
+                    className="actorimgs"
+                    src={actor.image}
+                    alt={actor.name}
+                  />
+                  {actor.name}
+                </Link>
+              ))}
+            </span>
+          </Col>
+          <Col md={8} className="plot">
             <h5>Plot: {this.state.title}</h5>
             <h6>{this.state.plot}</h6>
             <LikeButton />
           </Col>
           <Row>
-            <FormCreateComment fetchAllComments={this.fetchAllComments} movieId={this.props.match.params.id} />
-            {/* maybe un comp allComments here prenant comments en props*/}
+            <FormCreateComment
+              fetchAllComments={this.fetchAllComments}
+              movieId={this.props.match.params.id}
+            />
           </Row>
-          </Row>
-      
-          {this.state.comments.map((comment, i) => {
-            return (
-                <div key={i} className="">{comment.comment}{comment.rate}</div>
-            )
-          })}
-          </Container>
+        </Row>
+        {this.state.comments.map((comment, i) => {
+          return (
+            <div key={i} className="">
+              {comment.comment}
+              {comment.rate}
+              <button onClick={() => this.handleDelete(comment._id)}>
+              <i className="fas fa-trash"></i>
+              </button>
+            </div>
+          );
+        })}
+      </Container>
     );
   }
 }
-export default withRouter(MovieDetail)
+export default withRouter(MovieDetail);

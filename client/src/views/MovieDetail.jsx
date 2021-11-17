@@ -122,10 +122,10 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>User's rating : </span>
-            <StarRating/>
+            <span className="userrating">User's rating : <StarRating/></span>
           </Col>
-          <Col>
+          <Row>
+          <Col md={10}>
             <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>
@@ -140,6 +140,7 @@ class MovieDetail extends Component {
             </span>
             </Col>
           </Row>
+          </Row>
           <Col md={8} className="plot">
             <h5>{this.state.title}</h5>
             <h6>{this.state.plot}</h6>
@@ -151,7 +152,6 @@ class MovieDetail extends Component {
               movieId={this.props.match.params.id}
             />
           </Row>
-        </Row>
         {this.state.comments.map((comment, i) => {
           return (
             <div key={i} className="">

@@ -1,8 +1,12 @@
 .inpSearch {
     width: 375px;
     height: 38px;
-    margin: 5px 37%;
+    margin: 3px 36%;
     background-color: #212529;
     color: whitesmoke;
     border-radius: 7px;
+}
+
+.pagehome {
+    margin-top: 15px;
 }

@@ -6,7 +6,10 @@
 h6 {
     font-family: "Archia";
 }
-
+.colImag {
+    margin: 12px;
+    margin-right: 35px;
+}
 .infoText {
     font-size: 1.2rem;
     line-height: 2.4rem;
@@ -51,4 +54,9 @@ h6 {
     width: 102px;
     height: 132px;
     opacity:0.6;
+}
+
+.userrating {
+    display: flex;
+    width: 200px;
 }

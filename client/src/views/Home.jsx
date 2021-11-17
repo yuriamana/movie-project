@@ -40,9 +40,9 @@ export default class Home extends Component {
     }
 
     return (
-      <div className="pagehome">
+      <div>
       <input type="text" placeholder="Search..." className="inpSearch" onChange={(e) => this.handleSearch(e.target.value)}/> 
-        <div>
+        <div className="pagehome">
           <Container>
             <Tabs defaultActiveKey="profile" className="tabs">
               <Tab eventKey="All" title="All" className='active'>

@@ -26,7 +26,7 @@ router.get("/comments/:id", (req, res, next) => { //id du movie
 
 //CREATE
 router.post("/comments", (req,res,next) => {
-  // console.log("api:back post comment")
+  console.log("api:back post comment")
     CommentModel.create({
         ...req.body,
     })
@@ -46,7 +46,7 @@ router.patch("/:id", (req,res) => {
     .then((comment) => {
         res.status(201).json(comment)
       })
-      .catch((error) => console.log("something went wrong with the album editing", error))
+      .catch((error) => console.log("something went wrong with the comment editing", error))
       
     });
 

@@ -148,8 +148,11 @@ class MovieDetail extends Component {
               {comment.comment}
               {comment.rate}
               <button onClick={() => this.handleDelete(comment._id)}>
-              <i className="fas fa-trash"></i>
+              <i className="fas fa-trash">Delete</i>
               </button>
+              <button>
+              <i class="fas fa-edit">Edit</i>
+              </button>  
             </div>
           );
         })}

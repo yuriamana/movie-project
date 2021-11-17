@@ -135,7 +135,7 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Actors:{" "}
               {this.state.actorList.map((actor, i) => (
-                <h6 key={i}>{actor.name} | </h6>
+                <h6 key={i}>{actor.name} /</h6>
               ))}
             </span>
             <br />
@@ -144,17 +144,15 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Genre :{" "}
               {this.state.genreList.map((genre, i) => (
-                <h6 key={i}>{genre.value} | </h6>
+                <h6 key={i}>{genre.value} /</h6>
               ))}
             </span>
             <br />
-            <span>User's rating :
-            {/* calcul de l'average du rating */}
-            <StarRating />
-            </span>
+            <span className="userrating">User's rating : <StarRating/></span>
           </Col>
-          <Col>
-            <span>
+          <Row>
+            <Col md={10}>
+              <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>
                   <img
@@ -164,9 +162,17 @@ class MovieDetail extends Component {
                   />
                   {actor.name}
                 </Link>
-              ))}
-            </span>
+                ))}
+              </span>
+              </Col>
+            </Row>
+          </Row>
+          <Col md={8} className="plot">
+            <h5>{this.state.title}</h5>
+            <h6>{this.state.plot}</h6>
+            <LikeButton />
           </Col>
+          <Row>
           <p>{avgRate}</p>
             <StarRating film={this.props.match.params.id}/>
             <FormCreateComment

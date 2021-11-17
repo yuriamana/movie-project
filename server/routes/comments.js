@@ -7,7 +7,7 @@ const CommentModel = require("../model/Comment");
 router.get("/comments/", (req, res, next) => { //id du movie
     CommentModel.find()
     .then((comments) => {
-      console.log(comments);
+      // console.log(comments);
       res.status(200).json(comments)
     })
     .catch((error) => console.error(error))
@@ -17,7 +17,7 @@ router.get("/comments/", (req, res, next) => { //id du movie
 router.get("/comments/:id", (req, res, next) => { //id du movie
   CommentModel.find({id_film: req.params.id})
   .then((comment) => {
-    console.log(comment);
+    // console.log(comment);
     res.status(200).json(comment)
   })
   .catch((error) => console.error(error))

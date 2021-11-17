@@ -20,4 +20,5 @@ class MyAccount extends Component {
 }
 
 export default withAuth(MyAccount); // HOC => encapsule ta classe et lui donne en props les infos de l'auth
+
 //on veut display seulement les films que le user a commenté/raté

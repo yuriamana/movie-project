@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Tabs, Tab, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Tabs, Tab } from "react-bootstrap";
+// import { Link } from "react-router-dom";
 import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
 import AllMovies from "../components/AllMovies";

@@ -4,7 +4,7 @@ const CommentModel = require("../model/Comment");
 
 //READ
 
-router.get("/comments/", (req, res, next) => { //id du movie
+router.get("/comments", (req, res, next) => { //id du movie
     CommentModel.find()
     .then((comments) => {
       // console.log(comments);
@@ -25,8 +25,8 @@ router.get("/comments/:id", (req, res, next) => { //id du movie
 });
 
 //CREATE
-router.post("/comments/create", (req,res,next) => {
-  console.log("api:back post comment")
+router.post("/comments", (req,res,next) => {
+  // console.log("api:back post comment")
     CommentModel.create({
         ...req.body,
     })
@@ -39,7 +39,7 @@ router.post("/comments/create", (req,res,next) => {
 
 //EDIT
 
-router.patch("/comments/:id/edit", (req,res) => {
+router.patch("/:id", (req,res) => {
     CommentModel.create({
         ...req.body,
     },{new: true})
@@ -52,7 +52,7 @@ router.patch("/comments/:id/edit", (req,res) => {
 
 // DELETE 
 
-router.delete("/comments/:id", (req,res) => {
+router.delete("/:id", (req,res) => {
   CommentModel
     .findByIdAndDelete(req.params.id)
     .then((comment) => res.status(200).json(comment))

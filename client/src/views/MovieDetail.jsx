@@ -8,7 +8,7 @@ import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
 import StarRating from "./../StarRating";
 import "./../styles/stars.css";
-import FormEditComment from "../components/form/FormEditComment";
+
 
 class MovieDetail extends Component {
   state = {
@@ -98,12 +98,15 @@ class MovieDetail extends Component {
     }
   };
 
-  handleEditComment = async (id, text) => {
-    try {
-      await APIHandler.patch(`/comments/${id}`, { comment: text });
-      this.fetchAllComments(this.props.match.params.id);
-    } catch (err) {
-      console.error(err);
+  handleEditComment = async (e, id, text) => {
+    console.log(text)
+    if(e.key === 'Enter') {
+      try {
+        await APIHandler.patch(`/comments/${id}`, { comment: text });
+        this.fetchAllComments(this.props.match.params.id);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -133,7 +136,7 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Actors:{" "}
               {this.state.actorList.map((actor, i) => (
-                <h6 key={i}>{actor.name}/</h6>
+                <h6 key={i}>{actor.name} | </h6>
               ))}
             </span>
             <br />
@@ -142,7 +145,7 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Genre :{" "}
               {this.state.genreList.map((genre, i) => (
-                <h6 key={i}> {genre.value}\ </h6>
+                <h6 key={i}>{genre.value} | </h6>
               ))}
             </span>
             <br />
@@ -179,8 +182,9 @@ class MovieDetail extends Component {
                 contentEditable="true"
                 key={i}
                 className="2"
-                onInput={(e) =>
+                onKeyPress={(e) =>
                   this.handleEditComment(
+                    e,
                     comment._id,
                     e.currentTarget.textContent
                   )

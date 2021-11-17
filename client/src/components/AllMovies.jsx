@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Container, Col, Pagination } from "react-bootstrap";
+import { Row, Container, Col, } from "react-bootstrap";
 import "./../styles/AllMovies.css";
 import { Link } from "react-router-dom";
 

@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import APIHandler from "./api/APIHandler";
 
-const StarRating = () => {
+const StarRating = ({film}) => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+  useEffect(() => {
+    APIHandler.post('/rates/'+ film, {rating}).then((doc) => {
+      console.log('cool')
+    }).catch(e => console.error(e))
+  },[rating, film])
+
     return (
       <div className="star-rating">
         {[...Array(5)].map((star, index) => {
@@ -27,4 +34,3 @@ const StarRating = () => {
 
 export default StarRating
 
-//créer les routes pour aller récup les infos dans la db 

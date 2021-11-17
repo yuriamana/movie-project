@@ -15,7 +15,7 @@ router.get("/comments", (req, res, next) => { //id du movie
   });
 
 router.get("/comments/:id", (req, res, next) => { //id du movie
-  CommentModel.find({id_film: req.params.id})
+  CommentModel.findById({id_film: req.params.id})
   .then((comment) => {
     // console.log(comment);
     res.status(200).json(comment)
@@ -37,10 +37,9 @@ router.post("/comments", (req,res,next) => {
       
     });
 
-//EDIT
-
-router.patch("/:id", (req,res) => {
-    CommentModel.create({
+// UPDATE
+router.patch("/comments/:id", (req,res) => {
+    CommentModel.findByIdAndUpdate({
         ...req.body,
     },{new: true})
     .then((comment) => {

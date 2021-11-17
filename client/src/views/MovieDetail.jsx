@@ -66,7 +66,6 @@ class MovieDetail extends Component {
   fetchAllComments = async (id) => {
     // req ajax ici
     try {
-      
       const res = await APIHandler.get("/comments/" + id);
       console.log(res.data)
       this.setState({
@@ -76,7 +75,18 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
-  
+
+  fetchAllRatings = async(id) => {
+    try {
+      const res = await APIHandler.get("/rates/" + id);
+      this.setState({
+        rates: res.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   
   handleDelete = async (id) => {
     try {
@@ -122,8 +132,10 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>User's rating : </span>
-            <StarRating/>
+            <span>User's rating :
+            {/* calcul de l'average du rating */}
+            <StarRating />
+            </span>
           </Col>
           <Col>
             <span>
@@ -146,12 +158,12 @@ class MovieDetail extends Component {
             <LikeButton />
           </Col>
           <Row>
+            <StarRating film={this.props.match.params.id}/>
             <FormCreateComment
               fetchAllComments={this.fetchAllComments}
               movieId={this.props.match.params.id}
             />
           </Row>
-        </Row>
         {this.state.comments.map((comment, i) => {
           return (
             <div key={i} className="">

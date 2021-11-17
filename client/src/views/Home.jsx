@@ -5,7 +5,7 @@ import { Container, Tabs, Tab } from "react-bootstrap";
 import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
 import AllMovies from "../components/AllMovies";
-import TopMovies from "../components/TopMovies";
+// import TopMovies from "../components/TopMovies";
 
 export default class Home extends Component {
   state = {

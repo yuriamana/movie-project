@@ -32,4 +32,4 @@ export class LikeButton extends Component {
 }
 
 export default LikeButton
-
+//thanks to Florian

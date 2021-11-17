@@ -20,7 +20,7 @@ export default class FormCreateComment extends Component {
       id_film: this.props.movieId,
     };
     // console.log("be4 post");
-    APIHandler.post("/comments/create", myComment)
+    APIHandler.post("/comments", myComment)
       .then((res) => {
         // console.log("after post result");
         // passer l'info au parent (un comme nt a été ajouté )

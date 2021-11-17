@@ -4,7 +4,7 @@ const CommentModel = require("../model/Comment");
 
 //READ
 
-router.get("/comments/", (req, res, next) => { //id du movie
+router.get("/comments", (req, res, next) => { //id du movie
     CommentModel.find()
     .then((comments) => {
       // console.log(comments);
@@ -25,7 +25,7 @@ router.get("/comments/:id", (req, res, next) => { //id du movie
 });
 
 //CREATE
-router.post("/comments/create", (req,res,next) => {
+router.post("/comments", (req,res,next) => {
   console.log("api:back post comment")
     CommentModel.create({
         ...req.body,
@@ -39,26 +39,26 @@ router.post("/comments/create", (req,res,next) => {
 
 //EDIT
 
-router.patch("/comments/:id/edit", (req,res) => {
+router.patch("/:id", (req,res) => {
     CommentModel.create({
         ...req.body,
     },{new: true})
     .then((comment) => {
         res.status(201).json(comment)
       })
-      .catch((error) => console.log("something went wrong with the album editing", error))
+      .catch((error) => console.log("something went wrong with the comment editing", error))
       
     });
 
 // DELETE 
 
-router.delete("/comments/:id", (req,res) => {
-  CommentModel
-    .findByIdAndDelete(req.params.id)
-    .then((album) => res.status(200).json(album))
-    .catch((err) => {
-      console.error(err);
-    });
-});
+router.delete("/comments/:id", async (req,res, next) => {
+  try {
+    const deletedComment = await CommentModel.findByIdAndDelete(req.params.id)
+    res.status(200).json(deletedComment)
+  } catch(error) {
+    console.error(error);
+  }
+})
 
 module.exports = router;

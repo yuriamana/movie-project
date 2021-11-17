@@ -6,8 +6,14 @@ import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
+import Stars from "./../components/Stars";
+import StarRating from "./../StarRating";
+// import { useAuth } from "./UserContext";
+
+
 class MovieDetail extends Component {
-  state = {
+ state =
+  {
     title: "",
     year: "",
     image: "",
@@ -48,7 +54,7 @@ class MovieDetail extends Component {
             actorList: data.actorList,
             genreList: data.genreList,
             imDbRating: data.imDbRating,
-            usersRating: data.usersRating,
+            // usersRating: data.usersRating,
           },
           () => {
             this.fetchAllComments(this.props.match.params.id);
@@ -62,7 +68,9 @@ class MovieDetail extends Component {
   fetchAllComments = async (id) => {
     // req ajax ici
     try {
+      
       const res = await APIHandler.get("/comments/" + id);
+      console.log(res.data)
       this.setState({
         comments: res.data,
       });
@@ -70,11 +78,12 @@ class MovieDetail extends Component {
       console.error(err);
     }
   };
-
+  
+  
   handleDelete = async (id) => {
     try {
-      await APIHandler.delete(`/movies/${id}`);
-      this.fetchAllComments();
+      await APIHandler.delete(`/comments/${id}`);
+      this.fetchAllComments(this.props.match.params.id);
     } catch (err) {
       console.error(err);
     }
@@ -83,6 +92,7 @@ class MovieDetail extends Component {
   render() {
     // console.log(this.props)
     // console.log(this.state.actorList);
+
     return (
       <Container>
         <br />
@@ -114,7 +124,11 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
+            <div>
+                <StarRating/>
+            </div>
             <span>User's rating : {this.state.usersRating}</span>
+            <Stars/>
           </Col>
           <Row>
               <Col md={8}>
@@ -150,8 +164,11 @@ class MovieDetail extends Component {
               {comment.comment}
               {comment.rate}
               <button onClick={() => this.handleDelete(comment._id)}>
-              <i className="fas fa-trash"></i>
+              <i className="fas fa-trash">Delete</i>
               </button>
+              <button>
+              <i className="fas fa-edit">Edit</i>
+              </button>  
             </div>
           );
         })}

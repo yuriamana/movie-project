@@ -1,24 +1,59 @@
 import React, { Component } from "react";
-// import APIHandler from "./../api/APIHandler";
-import { withAuth } from "./../auth/UserContext.js";
+// // import APIHandler from "./../api/APIHandler";
+// // import { withAuth } from "./../auth/UserContext.js";
+// import { Link, Redirect } from "react-router-dom";
+// // custom tools
+import { Container } from "react-bootstrap";
+// import APIHandler from "../api/APIHandler";
+import IconAvatarAdmin from "../components/icon/IconAvatarAdmin";
+import { withAuth } from "../auth/UserContext";
+// // styles
+// import "./../styles/form.css";
+// import "./../styles/icon-avatar.css";
 
 class MyAccount extends Component {
   state = {
-    commentedMovies: [],
+    avatar: "",
+    tmpAvatar: "/imag/Avatar.jpeg",
+    username: "admin",
+    email: "admin@foobarbaz.io",
+    password: "12345",
   };
+   
 
-  async componentDidMount() {
-    console.log(this.props)
-  }
+
   render() {
+    const { email, password, username, tmpAvatar } = this.state;
+
     return (
-      <div>
-        Commented movies
-      </div>
-    );
+    
+    <Container>
+       <h1 className="title">My Account</h1>
+
+        <label className="label" id="avatar" htmlFor="avatar">
+         <IconAvatarAdmin avatar={this.state.tmpAvatar} />
+        </label>
+
+        <p className="label" htmlFor="email">
+           {}
+        </p>
+     
+        <p className="label" htmlFor="username">
+          Username
+        </p>
+        <input
+          className="input"
+          id="username"
+          type="text"
+          name="username"
+          defaultValue={username}
+        />
+
+    </Container>
+   );
   }
 }
 
-export default withAuth(MyAccount); // HOC => encapsule ta classe et lui donne en props les infos de l'auth
+export default withAuth(MyAccount) // HOC => encapsule ta classe et lui donne en props les infos de l'auth
 
-//on veut display seulement les films que le user a commenté/raté
+// //on veut display seulement les films que le user a commenté/raté

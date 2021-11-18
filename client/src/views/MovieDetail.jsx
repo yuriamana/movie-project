@@ -33,6 +33,7 @@ class MovieDetail extends Component {
     imDbRating: "",
     usersRating: [],
     comments: [],
+    avgRate: null
   };
 
   async componentDidMount() {
@@ -67,7 +68,22 @@ class MovieDetail extends Component {
     this.fetchAllRatings(this.props.match.params.id);
   }
   // aussi fetch tous les comments de ce films et setState comments
-
+  componentDidUpdate(prevProps, prevState) {
+    // let tmp
+    // if (prevProps === this.state) {
+    //   let avgRate = 0
+    //   if (this.state.usersRating.length > 0) {
+    //    tmp = (
+    //       this.state.usersRating.reduce((acc, val) => acc + val.rate, 0) /
+    //       this.state.usersRating.length
+    //     ).toFixed(2);
+    //   }
+      
+    // }
+    // this.setState({
+    //   avgRate: tmp,
+    // })
+  }
   fetchAllComments = async (id) => {
     // console.log("fetchAllComments");
     // console.log(id);
@@ -125,13 +141,15 @@ class MovieDetail extends Component {
       avgRate = (
         this.state.usersRating.reduce((acc, val) => acc + val.rate, 0) /
         this.state.usersRating.length
-      ).toFixed(2);
-    }
-    // console.log(avgRate);
+        ).toFixed(2);
+      }
+      const Xmas = new Date(this.state.year);
+      console.log(Xmas);
+      const year = Xmas.getFullYear(); // returns -100
     return (
       <Container>
         <br />
-        <h1>{this.state.title} </h1> <span>({this.state.year})</span>
+        <h1>{this.state.title}  <span className="year">({year})</span></h1>
         <br />
         <Row className="bodydetail">
           <Col md="auto" className="colImag">
@@ -159,8 +177,9 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
+            <p>{this.state.avgRate}</p>
             <span className="rating">
-              User's rating : <UserStarRatingDisplay rating={avgRate} />
+              User's rating : <UserStarRatingDisplay rating={this.state.avgRate} />
             </span>
           </Col>
           <Row>
@@ -217,11 +236,13 @@ class MovieDetail extends Component {
           );
         })}
         <Row>
+          <Col md={6}>
           <StarRating film={this.props.match.params.id} />
           <FormCreateComment
             fetchAllComments={this.fetchAllComments}
             movieId={this.props.match.params.id}
           />
+          </Col>
         </Row>
       </Container>
     );

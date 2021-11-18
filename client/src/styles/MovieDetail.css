@@ -59,3 +59,8 @@ h6 {
 .rating {
     display: flex;
 }
+
+.year {
+    font-size: 1.3rem;
+    color: #9f9696;
+}

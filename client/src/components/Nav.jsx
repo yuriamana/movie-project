@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./../styles/nav.css";
-import { Container, Navbar,Nav } from "react-bootstrap";
+import { Container, Navbar,Nav, NavDropdown } from "react-bootstrap";
 
 export default class Navi extends Component {
   state = {
@@ -13,9 +13,8 @@ export default class Navi extends Component {
   
   render() {
     return (
-      <Navbar bg="light" expand="sm">
+      <Navbar bg="dark" expand="sm">
         <Container>
-          <Navbar.Brand>
             <Link to="/">
               <img
                 src="/imag/movie logo.png"
@@ -23,19 +22,15 @@ export default class Navi extends Component {
                 className="movielogo"
               />
             </Link>
-          </Navbar.Brand>
+            <span className="ourname">PYJ CINEMA</span>
           <Nav className="text-center mt-4 mb-4">
-          <Nav.Item className="login">
-            <Nav.Link href="/signin">Signin</Nav.Link>
-          </Nav.Item>
-          <Nav.Item className="login">
-            <Nav.Link href="/signup">Signup</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="disabled" disabled>
+          <NavDropdown title="Dropdown" id="nav-dropdown" active="true" menuRole="menu">
+          <NavDropdown.Item eventKey="4.1" href="/signin">Signin</NavDropdown.Item>
+          <NavDropdown.Item eventKey="4.2" href="/signup">Signup</NavDropdown.Item>
+      </NavDropdown>
+            <Nav.Link eventKey="disabled">
               About
             </Nav.Link>
-        </Nav.Item>
         </Nav>
         </Container>
       </Navbar>

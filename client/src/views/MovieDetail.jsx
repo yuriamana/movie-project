@@ -6,9 +6,8 @@ import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
-import StarRating from "./../StarRating";
-import "./../styles/stars.css";
-
+import StarRating from "../components/StarRating";
+import "./../styles/stars.css"
 
 class MovieDetail extends Component {
   state = {
@@ -140,7 +139,7 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Actors:{" "}
               {this.state.actorList.map((actor, i) => (
-                <h6 key={i}>{actor.name} | </h6>
+                <h6 key={i}>{actor.name} /</h6>
               ))}
             </span>
             <br />
@@ -149,7 +148,7 @@ class MovieDetail extends Component {
             <span className="AGlist">
               Genre :{" "}
               {this.state.genreList.map((genre, i) => (
-                <h6 key={i}>{genre.value} | </h6>
+                <h6 key={i}>{genre.value} /</h6>
               ))}
             </span>
             <br />
@@ -158,9 +157,11 @@ class MovieDetail extends Component {
             {/* calcul de l'average du rating */}
             {/* <StarRating /> */}
             </span>
+           
           </Col>
-          <Col>
-            <span>
+          <Row>
+            <Col md={10}>
+              <span>
               {this.state.actorList.map((actor, i) => (
                 <Link to="/actor/:id" className="actorblok" key={i}>
                   <img
@@ -170,11 +171,19 @@ class MovieDetail extends Component {
                   />
                   {actor.name}
                 </Link>
-              ))}
-            </span>
+                ))}
+              </span>
+              </Col>
+            </Row>
+          </Row>
+          <Col md={8} className="plot">
+            <h5>{this.state.title}</h5>
+            <h6>{this.state.plot}</h6>
+            <LikeButton />
           </Col>
-          
-            {/* <StarRating film={this.props.match.params.id}/> */}
+          <Row>
+          <p>{avgRate}</p>
+            <StarRating film={this.props.match.params.id}/>
             <FormCreateComment
               fetchAllComments={this.fetchAllComments}
               movieId={this.props.match.params.id}

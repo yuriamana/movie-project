@@ -5,10 +5,12 @@ import "./../styles/AllMovies.css";
 import { Link } from "react-router-dom";
 
 export default function AllMovies({ movies }) {
+  const copy = [...movies]
+  copy.sort((() => {return Math.random()-0.5;}))
   return (
     <Container>
       <Row>
-        {movies.map((movie, i) => (
+        {copy.map((movie, i) => (
           <Col key={i} className="movieblock">
             <Link
               to={{

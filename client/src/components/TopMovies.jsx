@@ -1,16 +1,18 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Container, Col } from "react-bootstrap";
+import { Row, Container, Col, Spinner } from "react-bootstrap";
 import "./../styles/AllMovies.css";
 import { Link } from "react-router-dom";
 
 
 export default function TopMovies({ movies }) {
-    if(!movies) return <div>Loading</div>
+    if(!movies) return 
+    <Spinner animation="border" role="status">
+    <span className="visually-hidden">Loading...</span>
+    </Spinner>
     
     const copy = [...movies]
     copy.sort((a, b) => b.imDbRating.localeCompare(a.imDbRating))
-    console.log(copy);
         return (
     <Container>
       <Row>

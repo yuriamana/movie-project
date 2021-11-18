@@ -4,12 +4,12 @@
     
 }
 
-.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
-    color:whitesmoke;
-}
-
 .ourname {
     color: whitesmoke;
     font-size: 1.3rem;
     font-family: fantasy;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color:whitesmoke;
 }

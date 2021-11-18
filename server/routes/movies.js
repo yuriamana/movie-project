@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 const MovieModel = require("../model/Movie")
 
+// const moodToGenres = {
+//   laugh: ["comedy", "musical"],
+//   sucidal: ["dram", "war"],
+// }
+
 router.get('/movies', async (req, res, next) => {
   try{
     const movies = await MovieModel.find()
@@ -19,7 +24,5 @@ router.get("/movie/:id", async (req, res, next) => {
     next(err);
   }
 });
-
-
 
 module.exports = router;

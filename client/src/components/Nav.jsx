@@ -24,13 +24,7 @@ export default class Navi extends Component {
             </Link>
             <span className="ourname">PYJ CINEMA</span>
           <Nav className="text-center mt-4 mb-4">
-          <NavDropdown title="Dropdown" id="nav-dropdown" active="true" menuRole="menu">
-          <NavDropdown.Item eventKey="4.1" href="/signin">Signin</NavDropdown.Item>
-          <NavDropdown.Item eventKey="4.2" href="/signup">Signup</NavDropdown.Item>
-      </NavDropdown>
-            <Nav.Link eventKey="disabled">
-              About
-            </Nav.Link>
+          <Nav.Link href="/signin" className="Signin">Signin</Nav.Link>
         </Nav>
         </Container>
       </Navbar>

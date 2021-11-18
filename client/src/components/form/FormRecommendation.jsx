@@ -6,12 +6,14 @@ export default class FormRecommendation extends Component {
     mood: [],
   };
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     alert("Your mood is : " + this.state.value);
     event.preventDefault();
   }
 
-  handleChange() {}
+  handleChange = (e) => {
+    console.log(e.target.value);
+  }
 
   render() {
     return (

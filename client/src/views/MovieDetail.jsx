@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
 import StarRating from "../components/StarRating";
-import "./../styles/stars.css"
+import StarRatingDisplay from "../components/StarRatingDisplay";
+import "./../styles/stars.css";
+import { withAuth } from "./../auth/UserContext.js";
 
 class MovieDetail extends Component {
   state = {
@@ -34,7 +36,10 @@ class MovieDetail extends Component {
   };
 
   async componentDidMount() {
-    console.log('MovieDetqils componentDidMount');
+    console.log("MovieDetqils componentDidMount");
+    console.log("====================================");
+    console.log(this.props.currentUser);
+    console.log("====================================");
     //   console.log(this.props.location.movieId)
     //this.props are properties you give to an object when you create so you can access/use them
     //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
@@ -59,18 +64,18 @@ class MovieDetail extends Component {
         );
       })
       .catch((apiErr) => console.error(apiErr));
-      this.fetchAllRatings(this.props.match.params.id)
+    this.fetchAllRatings(this.props.match.params.id);
   }
   // aussi fetch tous les comments de ce films et setState comments
 
   fetchAllComments = async (id) => {
-    console.log('fetchAllComments');
+    console.log("fetchAllComments");
     console.log(id);
-    
+
     // req ajax ici
     try {
       const res = await APIHandler.get("/comments/" + id);
-      console.log('fetched all comments for ID', id, res.data);
+      console.log("fetched all comments for ID", id, res.data);
       this.setState({
         comments: res.data,
       });
@@ -79,7 +84,7 @@ class MovieDetail extends Component {
     }
   };
 
-  fetchAllRatings = async(id) => {
+  fetchAllRatings = async (id) => {
     try {
       const res = await APIHandler.get("/rates/" + id);
       this.setState({
@@ -90,7 +95,6 @@ class MovieDetail extends Component {
     }
   };
 
-  
   handleDelete = async (id) => {
     try {
       await APIHandler.delete(`/comments/${id}`);
@@ -101,8 +105,9 @@ class MovieDetail extends Component {
   };
 
   handleEditComment = async (e, id, text) => {
-    console.log(text)
-    if(e.key === 'Enter') {
+    console.log(e.code);
+    if (e.key === "Enter") {
+      alert("heyeyeyeye");
       try {
         await APIHandler.patch(`/comments/${id}`, { comment: text });
         this.fetchAllComments(this.props.match.params.id);
@@ -116,11 +121,14 @@ class MovieDetail extends Component {
     // console.log(this.props)
     console.log("render()");
     console.log(this.state.usersRating);
-    let avgRate = null
-    if(this.state.usersRating.length > 0) {
-      avgRate = (this.state.usersRating.reduce((acc, val) => acc + val.rate ,0)/this.state.usersRating.length).toFixed(2)
+    let avgRate = 0;
+    if (this.state.usersRating.length > 0) {
+      avgRate = (
+        this.state.usersRating.reduce((acc, val) => acc + val.rate, 0) /
+        this.state.usersRating.length
+      ).toFixed(2);
     }
-    console.log(avgRate)
+    console.log(avgRate);
     return (
       <Container>
         <br />
@@ -152,48 +160,49 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>User's rating : {avgRate}
-
-            {/* calcul de l'average du rating */}
-            {/* <StarRating /> */}
+            <span>
+              User's rating : {avgRate}
+              {/* calcul de l'average du rating */}
+              <StarRatingDisplay rating={avgRate} />
             </span>
-           
           </Col>
           <Row>
             <Col md={10}>
               <span>
-              {this.state.actorList.map((actor, i) => (
-                <Link to="/actor/:id" className="actorblok" key={i}>
-                  <img
-                    className="actorimgs"
-                    src={actor.image}
-                    alt={actor.name}
-                  />
-                  {actor.name}
-                </Link>
+                {this.state.actorList.map((actor, i) => (
+                  <Link to="/actor/:id" className="actorblok" key={i}>
+                    <img
+                      className="actorimgs"
+                      src={actor.image}
+                      alt={actor.name}
+                    />
+                    {actor.name}
+                  </Link>
                 ))}
               </span>
-              </Col>
-            </Row>
+            </Col>
           </Row>
-          <Col md={8} className="plot">
-            <h5>{this.state.title}</h5>
-            <h6>{this.state.plot}</h6>
-            <LikeButton />
-          </Col>
-          <Row>
+        </Row>
+        <Col md={8} className="plot">
+          <h5>{this.state.title}</h5>
+          <h6>{this.state.plot}</h6>
+          <LikeButton />
+        </Col>
+        <Row>
           <p>{avgRate}</p>
-            <StarRating film={this.props.match.params.id}/>
-            <FormCreateComment
-              fetchAllComments={this.fetchAllComments}
-              movieId={this.props.match.params.id}
-            />
-          </Row>
+          <StarRating film={this.props.match.params.id} />
+          <FormCreateComment
+            fetchAllComments={this.fetchAllComments}
+            movieId={this.props.match.params.id}
+          />
+        </Row>
         {this.state.comments.map((comment, i) => {
           return (
-            <>      
+            <>
               <div
-                contentEditable="true"
+                contentEditable={
+                  this.props.currentUser?._id === comment.id_author || false
+                }
                 key={i}
                 className="2"
                 onKeyPress={(e) =>
@@ -219,4 +228,4 @@ class MovieDetail extends Component {
     );
   }
 }
-export default withRouter(MovieDetail);
+export default withRouter(withAuth(MovieDetail));

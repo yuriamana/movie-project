@@ -1,0 +1,16 @@
+{
+    "name": "server",
+    "version": "0.0.0",
+    "private": true,
+    "engines": {
+        "node": "14.x"
+    },
+    "scripts": {
+        "heroku-prebuild": "cd server/ && npm install && cd ..",
+      "start": "cd server/ && node ./bin/www",
+      "dev": "nodemon ./bin/www",
+      "seed": "node ./bin/seed.js"
+    }
+   
+  }
+  

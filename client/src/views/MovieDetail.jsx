@@ -200,7 +200,7 @@ class MovieDetail extends Component {
             <>
               <div
                 contentEditable={
-                  this.props.currentUser?._id === comment.id_author || false
+                  this.props.currentUser?._id === comment.id_author || true
                 }
                 key={i}
                 className="2"

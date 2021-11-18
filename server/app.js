@@ -9,7 +9,7 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
-const _DEVMODE = false;
+const _DEVMODE = true;
 
 const app = express();
 
@@ -43,7 +43,7 @@ app.use(passport.initialize())
 if (_DEVMODE === true) {
     app.use(function devMode(req, res, next) {
       req.user = {
-        _id: "5de9c376fa023e21a766a606",
+        _id: "618ffb3532facccdf54b37dc",
         username: "ironhack",
         email: "toto@foo.bar",
         password: "1234",

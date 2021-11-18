@@ -15,7 +15,8 @@ router.get("/comments", (req, res, next) => { //id du movie
   });
 
 router.get("/comments/:id", (req, res, next) => { //id du movie
-  CommentModel.findById({id_film: req.params.id})
+  CommentModel.find({id_film: req.params.id})
+  //CommentModel.findById(req.params.id)
   .then((comment) => {
     // console.log(comment);
     res.status(200).json(comment)

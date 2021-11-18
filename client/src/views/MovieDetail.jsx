@@ -35,7 +35,7 @@ class MovieDetail extends Component {
   };
 
   async componentDidMount() {
-    // console.log(this)
+    console.log('MovieDetqils componentDidMount');
     //   console.log(this.props.location.movieId)
     //this.props are properties you give to an object when you create so you can access/use them
     //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
@@ -65,10 +65,13 @@ class MovieDetail extends Component {
   // aussi fetch tous les comments de ce films et setState comments
 
   fetchAllComments = async (id) => {
+    console.log('fetchAllComments');
+    console.log(id);
+    
     // req ajax ici
     try {
       const res = await APIHandler.get("/comments/" + id);
-      console.log(res.data);
+      console.log('fetched all comments for ID', id, res.data);
       this.setState({
         comments: res.data,
       });
@@ -81,7 +84,7 @@ class MovieDetail extends Component {
     try {
       const res = await APIHandler.get("/rates/" + id);
       this.setState({
-        rates: res.data,
+        usersRating: res.data,
       });
     } catch (err) {
       console.error(err);
@@ -112,12 +115,13 @@ class MovieDetail extends Component {
 
   render() {
     // console.log(this.props)
-    // console.log(this.state.actorList);
+    console.log("render()");
+    console.log(this.state.usersRating);
     let avgRate = null
     if(this.state.usersRating.length > 0) {
       avgRate = (this.state.usersRating.reduce((acc, val) => acc + val.rate ,0)/this.state.usersRating.length).toFixed(2)
     }
-
+    console.log(avgRate)
     return (
       <Container>
         <br />
@@ -149,9 +153,10 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>User's rating :
+            <span>User's rating : {avgRate}
+
             {/* calcul de l'average du rating */}
-            <StarRating />
+            {/* <StarRating /> */}
             </span>
           </Col>
           <Col>
@@ -168,8 +173,8 @@ class MovieDetail extends Component {
               ))}
             </span>
           </Col>
-          <p>{avgRate}</p>
-            <StarRating film={this.props.match.params.id}/>
+          
+            {/* <StarRating film={this.props.match.params.id}/> */}
             <FormCreateComment
               fetchAllComments={this.fetchAllComments}
               movieId={this.props.match.params.id}

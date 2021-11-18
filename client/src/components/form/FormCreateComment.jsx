@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import APIHandler from "../../api/APIHandler";
 
+// comment recuperer le user connecte dans ce composqnt 
+// pour envoyer le id_author dans le post /comments ?
+
 export default class FormCreateComment extends Component {
   state = {
     inputText: "",
@@ -18,6 +21,7 @@ export default class FormCreateComment extends Component {
       comment: this.state.inputText,
       rate: "3",
       id_film: this.props.movieId,
+      id_author: "618ffb3532facccdf54b37dc"
     };
     // console.log("be4 post");
     APIHandler.post("/comments", myComment)

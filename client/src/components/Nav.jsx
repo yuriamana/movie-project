@@ -24,7 +24,7 @@ export default class Navi extends Component {
             </Link>
             <span className="ourname">PYJ CINEMA</span>
           <Nav className="text-center mt-4 mb-4">
-          <Nav.Link href="/signin" className="Signin">Signin</Nav.Link>
+          <Link to="/signin" className="Signin">Signin</Link>
         </Nav>
         </Container>
       </Navbar>

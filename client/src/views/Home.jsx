@@ -57,7 +57,7 @@ export default class Home extends Component {
             <Tab eventKey="home" title="Home">
               {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
             </Tab>
-            <Tab eventKey="profile" title="Profile">
+            <Tab eventKey="Top-Movies" title="Top">
               <TopMovies movies={(this.state.movies).splice(5,10)}/>
             </Tab>
           </Tabs>

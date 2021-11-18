@@ -107,7 +107,6 @@ class MovieDetail extends Component {
   handleEditComment = async (e, id, text) => {
     console.log(e.code);
     if (e.key === "Enter") {
-      alert("heyeyeyeye");
       try {
         await APIHandler.patch(`/comments/${id}`, { comment: text });
         this.fetchAllComments(this.props.match.params.id);
@@ -161,8 +160,8 @@ class MovieDetail extends Component {
             </span>
             <br />
             <span>
-              User's rating : {avgRate}
-              {/* calcul de l'average du rating */}
+              User's rating : 
+              {/* {avgRate} */}
               <StarRatingDisplay rating={avgRate} />
             </span>
           </Col>

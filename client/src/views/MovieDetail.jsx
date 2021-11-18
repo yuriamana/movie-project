@@ -6,8 +6,8 @@ import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
 import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
-import StarRating from "../components/StarRating";
-import StarRatingDisplay from "../components/StarRatingDisplay";
+import StarRating from "../components/StarRating.jsx";
+import UserStarRatingDisplay from "../components/UserStarRatingDisplay";
 import "./../styles/stars.css";
 import { withAuth } from "./../auth/UserContext.js";
 
@@ -36,10 +36,10 @@ class MovieDetail extends Component {
   };
 
   async componentDidMount() {
-    console.log("MovieDetqils componentDidMount");
-    console.log("====================================");
-    console.log(this.props.currentUser);
-    console.log("====================================");
+    // console.log("MovieDetqils componentDidMount");
+    // console.log("====================================");
+    // console.log(this.props.currentUser);
+    // console.log("====================================");
     //   console.log(this.props.location.movieId)
     //this.props are properties you give to an object when you create so you can access/use them
     //for ex Link with a props "to=" create a new object (movie detail) and provide its properties
@@ -69,13 +69,13 @@ class MovieDetail extends Component {
   // aussi fetch tous les comments de ce films et setState comments
 
   fetchAllComments = async (id) => {
-    console.log("fetchAllComments");
-    console.log(id);
+    // console.log("fetchAllComments");
+    // console.log(id);
 
     // req ajax ici
     try {
       const res = await APIHandler.get("/comments/" + id);
-      console.log("fetched all comments for ID", id, res.data);
+      // console.log("fetched all comments for ID", id, res.data);
       this.setState({
         comments: res.data,
       });
@@ -118,8 +118,8 @@ class MovieDetail extends Component {
 
   render() {
     // console.log(this.props)
-    console.log("render()");
-    console.log(this.state.usersRating);
+    // console.log("render()");
+    // console.log(this.state.usersRating);
     let avgRate = 0;
     if (this.state.usersRating.length > 0) {
       avgRate = (
@@ -127,7 +127,7 @@ class MovieDetail extends Component {
         this.state.usersRating.length
       ).toFixed(2);
     }
-    console.log(avgRate);
+    // console.log(avgRate);
     return (
       <Container>
         <br />
@@ -160,9 +160,7 @@ class MovieDetail extends Component {
             </span>
             <br />
             <span>
-              User's rating : 
-              {/* {avgRate} */}
-              <StarRatingDisplay rating={avgRate} />
+              User's rating : <UserStarRatingDisplay rating={avgRate} />
             </span>
           </Col>
           <Row>
@@ -188,7 +186,6 @@ class MovieDetail extends Component {
           <LikeButton />
         </Col>
         <Row>
-          {/* <p>{avgRate}</p> */}
           <StarRating film={this.props.match.params.id} />
           <FormCreateComment
             fetchAllComments={this.fetchAllComments}
@@ -199,8 +196,8 @@ class MovieDetail extends Component {
           return (
             <>
               <div
-                contentEditable={
-                  this.props.currentUser?._id === comment.id_author || true
+                contentEditable= {
+                this.props.currentUser?._id === comment.id_author || true
                 }
                 key={i}
                 className="2"

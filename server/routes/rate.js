@@ -25,12 +25,9 @@ router.get("/rates/:id", async (req, res, next) => {
 
 //CREATE
 
-router.post("/rates", async (req, res, next) => {
+router.post("/rates/:id", async (req, res, next) => {
   try {
-    const rates = await RateModel.create({
-      ...req.body,
-    });
-    res.status(201).json(rates);
+    const rates = await RateModel.create(req.body)
   } catch (error) {
     console.error(error);
   }

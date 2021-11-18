@@ -1,7 +1,7 @@
 import React from "react";
 
 const UserStarRatingDisplay = ({rating}) => {
-
+  console.log(rating)
     return (
       <div className="star-rating">
         {[...Array(5)].map((star, index) => {

@@ -21,7 +21,7 @@ const StarRating = ({film}) => {
   useEffect(() => {
     if (!alreadyRated) {
       APIHandler.post('/rates/'+ film, {rate:rating, id_author: currentUser?._id, id_film: film}).then((doc) => {
-        console.log('cool')
+        console.log('cool', doc)
       }).catch(e => console.error(e))
     }
   },[rating, film, alreadyRated])

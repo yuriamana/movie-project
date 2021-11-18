@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button} from "react-bootstrap";
 import "./../styles/MovieDetail.css";
 import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
-import LikeButton from "../components/LikeButton";
+// import LikeButton from "../components/LikeButton";
 import { withRouter } from "react-router-dom";
 import StarRating from "../components/StarRating.jsx";
 import UserStarRatingDisplay from "../components/UserStarRatingDisplay";
@@ -159,7 +159,7 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>
+            <span className="rating">
               User's rating : <UserStarRatingDisplay rating={avgRate} />
             </span>
           </Col>
@@ -183,7 +183,6 @@ class MovieDetail extends Component {
         <Col md={8} className="plot">
           <h5>{this.state.title}</h5>
           <h6>{this.state.plot}</h6>
-          <LikeButton />
         </Col>
         <Row>
           <StarRating film={this.props.match.params.id} />
@@ -211,15 +210,19 @@ class MovieDetail extends Component {
               >
                 {comment.comment}
               </div>
-              <button onClick={() => this.handleDelete(comment._id)}>
-                <i className="fas fa-trash">Delete</i>
-              </button>
-              {/* <button>
-                <i className="fas fa-edit">Edit</i>
-              </button> */}
+              <Button onClick={() => this.handleDelete(comment._id)} variant="warning">
+                Delete
+              </Button>
             </>
           );
         })}
+        <Row>
+          <StarRating film={this.props.match.params.id} />
+          <FormCreateComment
+            fetchAllComments={this.fetchAllComments}
+            movieId={this.props.match.params.id}
+          />
+        </Row>
       </Container>
     );
   }

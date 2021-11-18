@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import APIHandler from "../../api/APIHandler";
-
+import { Form, Button }from "react-bootstrap"
 // comment recuperer le user connecte dans ce composqnt 
 // pour envoyer le id_author dans le post /comments ?
 
@@ -39,18 +39,38 @@ export default class FormCreateComment extends Component {
   };
 
   render() {
+    // function simulateNetworkRequest() {
+    //   return new Promise((resolve) => setTimeout(resolve, 2000));
+    // }
+    
+    // function LoadingButton() {
+    //   const [isLoading, setLoading] = useState(false);
+    
+    //   useEffect(() => {
+    //     if (isLoading) {
+    //       simulateNetworkRequest().then(() => {
+    //         setLoading(false);
+    //       });
+    //     }
+    //   }, [isLoading]);
+    
+    //   const handleClick = () => setLoading(true);
     return (
       <div>
-        <textarea
-          rows={5}
-          cols={30}
-          onChange={(value) => this.handleInputText(value)}
-        ></textarea>{" "}
-        <br />
-        <button onClick={() => this.handleAddComment()}>
-          Add your comments
-        </button>
+      <Form>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Control as="textarea" placeholder="Comment Here..." rows={2} onChange={(value) => this.handleInputText(value)}/>
+          {' '}</Form.Group>
+      </Form>
+        <Button 
+        variant="primary"
+        // disabled={isLoading}
+        // onClick={!isLoading ? handleClick : null}
+        onClick={() => this.handleAddComment()} size="lg">
+          Send
+        </Button>
       </div>
     );
+    
   }
-}
+}  

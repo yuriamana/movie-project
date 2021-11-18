@@ -28,15 +28,12 @@
 }
 
 .btn {
-  outline: none;
-  background: black;
   color: whitesmoke;
   cursor: pointer;
-  border-color: black;
-  min-width: 80px;
-  max-width: 150px;
-  max-height: 32px;
-  line-height: 1rem;
+  width: 70px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 0.8rem;
 }
 
 .btn.is-active,

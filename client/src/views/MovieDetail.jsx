@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import APIHandler from "./../api/APIHandler";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button} from "react-bootstrap";
 import "./../styles/MovieDetail.css";
 import FormCreateComment from "../components/form/FormCreateComment";
 import { Link } from "react-router-dom";
@@ -160,10 +160,8 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
-            <span>
-              User's rating : {avgRate}
-              {/* calcul de l'average du rating */}
-              <StarRatingDisplay rating={avgRate} />
+            <span className="rating">
+              User's rating : <StarRatingDisplay rating={avgRate} />
             </span>
           </Col>
           <Row>
@@ -186,16 +184,7 @@ class MovieDetail extends Component {
         <Col md={8} className="plot">
           <h5>{this.state.title}</h5>
           <h6>{this.state.plot}</h6>
-          <LikeButton />
         </Col>
-        <Row>
-          <p>{avgRate}</p>
-          <StarRating film={this.props.match.params.id} />
-          <FormCreateComment
-            fetchAllComments={this.fetchAllComments}
-            movieId={this.props.match.params.id}
-          />
-        </Row>
         {this.state.comments.map((comment, i) => {
           return (
             <>
@@ -215,15 +204,19 @@ class MovieDetail extends Component {
               >
                 {comment.comment}
               </div>
-              <button onClick={() => this.handleDelete(comment._id)}>
-                <i className="fas fa-trash">Delete</i>
-              </button>
-              {/* <button>
-                <i className="fas fa-edit">Edit</i>
-              </button> */}
+              <Button onClick={() => this.handleDelete(comment._id)} variant="warning">
+                Delete
+              </Button>
             </>
           );
         })}
+        <Row>
+          <StarRating film={this.props.match.params.id} />
+          <FormCreateComment
+            fetchAllComments={this.fetchAllComments}
+            movieId={this.props.match.params.id}
+          />
+        </Row>
       </Container>
     );
   }

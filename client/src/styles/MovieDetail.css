@@ -56,7 +56,6 @@ h6 {
     opacity:0.6;
 }
 
-.userrating {
+.rating {
     display: flex;
-    width: 200px;
 }

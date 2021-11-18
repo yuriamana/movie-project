@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./../styles/nav.css";
-import { Container, Navbar,Nav, NavDropdown } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 
 export default class Navi extends Component {
   state = {
@@ -24,7 +24,7 @@ export default class Navi extends Component {
             </Link>
             <span className="ourname">PYJ CINEMA</span>
           <Nav className="text-center mt-4 mb-4">
-          <Nav.Link href="/signin" className="Signin">Signin</Nav.Link>
+          <Link to="/signin" className="Signin">Signin</Link>
         </Nav>
         </Container>
       </Navbar>

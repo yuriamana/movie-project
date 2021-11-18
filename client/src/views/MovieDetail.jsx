@@ -33,6 +33,7 @@ class MovieDetail extends Component {
     imDbRating: "",
     usersRating: [],
     comments: [],
+    avgRate: null
   };
 
   async componentDidMount() {
@@ -67,7 +68,22 @@ class MovieDetail extends Component {
     this.fetchAllRatings(this.props.match.params.id);
   }
   // aussi fetch tous les comments de ce films et setState comments
-
+  componentDidUpdate(prevProps, prevState) {
+    // let tmp
+    // if (prevProps === this.state) {
+    //   let avgRate = 0
+    //   if (this.state.usersRating.length > 0) {
+    //    tmp = (
+    //       this.state.usersRating.reduce((acc, val) => acc + val.rate, 0) /
+    //       this.state.usersRating.length
+    //     ).toFixed(2);
+    //   }
+      
+    // }
+    // this.setState({
+    //   avgRate: tmp,
+    // })
+  }
   fetchAllComments = async (id) => {
     // console.log("fetchAllComments");
     // console.log(id);
@@ -145,13 +161,13 @@ class MovieDetail extends Component {
             <br />
             <span>Duration: {this.state.duration}min</span>
             <br />
-            <span className="AGlist">
+            {/* <span className="AGlist">
               Actors:{" "}
               {this.state.actorList.map((actor, i) => (
                 <h6 key={i}>{actor.name} /</h6>
               ))}
             </span>
-            <br />
+            <br /> */}
             <span>IMDB rating : {this.state.imDbRating}</span>
             <br />
             <span className="AGlist">
@@ -161,8 +177,9 @@ class MovieDetail extends Component {
               ))}
             </span>
             <br />
+            <p>{this.state.avgRate}</p>
             <span className="rating">
-              User's rating : <UserStarRatingDisplay rating={avgRate} />
+              User's rating : <UserStarRatingDisplay rating={this.state.avgRate} />
             </span>
           </Col>
           <Row>
@@ -186,7 +203,13 @@ class MovieDetail extends Component {
           <h5>{this.state.title}</h5>
           <h6>{this.state.plot}</h6>
         </Col>
-        
+        {/* <Row>
+          <StarRating film={this.props.match.params.id} />
+          <FormCreateComment
+            fetchAllComments={this.fetchAllComments}
+            movieId={this.props.match.params.id}
+          />
+        </Row> */}
         {this.state.comments.map((comment, i) => {
           return (
             <>

@@ -39,6 +39,7 @@ export default function App() {
             <Route path="/dashboard" component={MyAccount} />
             {/* <Route path="/comment" component={Comment} /> */}
             <Route path="*" component={NotFound} />
+            <Route path="/signout" component={Home} />
           </Switch> 
         </main>
         <footer>&copy;Priscilla | Joey | Yuki</footer>

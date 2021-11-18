@@ -1,6 +1,6 @@
 import React from "react";
 
-const StarRatingDisplay = ({rating}) => {
+const UserStarRatingDisplay = ({rating}) => {
 
     return (
       <div className="star-rating">
@@ -21,5 +21,5 @@ const StarRatingDisplay = ({rating}) => {
     );
   };
 
-export default StarRatingDisplay
+export default UserStarRatingDisplay
 

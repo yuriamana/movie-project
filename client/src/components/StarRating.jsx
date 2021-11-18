@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import APIHandler from "./api/APIHandler";
-import {useAuth} from './auth/UserContext'
+import APIHandler from "../api/APIHandler";
+import {useAuth} from '../auth/UserContext'
 const StarRating = ({film}) => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);

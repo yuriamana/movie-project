@@ -188,7 +188,7 @@ class MovieDetail extends Component {
           <LikeButton />
         </Col>
         <Row>
-          <p>{avgRate}</p>
+          {/* <p>{avgRate}</p> */}
           <StarRating film={this.props.match.params.id} />
           <FormCreateComment
             fetchAllComments={this.fetchAllComments}

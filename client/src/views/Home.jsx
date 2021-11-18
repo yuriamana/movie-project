@@ -10,7 +10,8 @@ import TopMovies from "../components/TopMovies";
 export default class Home extends Component {
   state = {
     movies: [],
-    searchString: ''
+    searchString: '',
+    isloading:false
   };
   handleSearch = (text) => {
     this.setState({searchString: text})
@@ -18,7 +19,7 @@ export default class Home extends Component {
   async componentDidMount() {
     APIHandler.get("/movies")
       .then(({ data }) => {
-        console.log("movies", data);
+        console.log("movies", data.length);
         this.setState({
           movies: data,
         });
@@ -28,7 +29,6 @@ export default class Home extends Component {
 
   render() {
     //Filter here 
-
     let moviesToDisplay = null
 
     if (this.state.searchString !== '' && this.state.movies.length > 0) {
@@ -40,6 +40,9 @@ export default class Home extends Component {
     }
       return (
         <div>
+        {!this.state.isLoading? (
+        <p>loading..</p>
+        ) :(
         <Container>
         <Row>
           <Col md={8}>
@@ -62,6 +65,7 @@ export default class Home extends Component {
             </Tab>
           </Tabs>
           </Container>
+        )}
         </div>
       );
     }

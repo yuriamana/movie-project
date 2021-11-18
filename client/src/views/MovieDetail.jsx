@@ -143,13 +143,13 @@ class MovieDetail extends Component {
             <br />
             <span>Duration: {this.state.duration}min</span>
             <br />
-            <span className="AGlist">
+            {/* <span className="AGlist">
               Actors:{" "}
               {this.state.actorList.map((actor, i) => (
                 <h6 key={i}>{actor.name} /</h6>
               ))}
             </span>
-            <br />
+            <br /> */}
             <span>IMDB rating : {this.state.imDbRating}</span>
             <br />
             <span className="AGlist">

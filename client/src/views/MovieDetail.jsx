@@ -184,13 +184,13 @@ class MovieDetail extends Component {
           <h5>{this.state.title}</h5>
           <h6>{this.state.plot}</h6>
         </Col>
-        <Row>
+        {/* <Row>
           <StarRating film={this.props.match.params.id} />
           <FormCreateComment
             fetchAllComments={this.fetchAllComments}
             movieId={this.props.match.params.id}
           />
-        </Row>
+        </Row> */}
         {this.state.comments.map((comment, i) => {
           return (
             <>

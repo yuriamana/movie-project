@@ -71,7 +71,7 @@ export default class Home extends Component {
             </Tab>
           </Tabs>
           </Container>
-        {/* )} */}
+        )}
         </div>
       );
     }

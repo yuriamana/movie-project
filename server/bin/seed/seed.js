@@ -17,10 +17,10 @@ mongoose
   .then(async (x) => {
     // await Movies.deleteMany();
     console.log(`Connection to ${x.connection.name} established.`);
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       const id = movies.items[i].id;
       const { data } = await axios.get(
-        `https://imdb-api.com/en/API/Title/k_10znj6fx/${id}`
+        `https://imdb-api.com/en/API/Title/k_p4jvq6vq/${id}`
       );
       await Movies.create(data);
     }

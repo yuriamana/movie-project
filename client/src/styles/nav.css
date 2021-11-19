@@ -13,3 +13,23 @@
 .navbar-light .navbar-nav .nav-link {
     color:whitesmoke;
 }
+
+a {
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.Signin {
+    color: whitesmoke;
+}
+.myaccount {
+    color: black;
+    display: flex;
+    height: 3px;
+    width: 112px;
+    margin-top: -18px;
+}
+
+.signout {
+    color: whitesmoke;
+}

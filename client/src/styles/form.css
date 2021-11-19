@@ -44,7 +44,7 @@
 
 .form .btn {
   justify-self: flex-end;
-
+  background-color: black;
 }
 
 .form .input,

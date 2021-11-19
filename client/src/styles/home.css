@@ -4,7 +4,7 @@
     background-color: #212529;
     color: whitesmoke;
     border-radius: 0.7rem;
-    margin: 3px 0 25px 50%;
+    margin: 3px 0 25px 54%;
     
 }
 
@@ -13,4 +13,9 @@
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     background-color: #212529
+}
+
+.jiazai {
+    margin: 10px 46%;
+    width: 200px;
 }

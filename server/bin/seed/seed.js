@@ -20,7 +20,7 @@ mongoose
     for (let i = 0; i < 100; i++) {
       const id = movies.items[i].id;
       const { data } = await axios.get(
-        `https://imdb-api.com/en/API/Title/k_12345678/${id}`
+        `https://imdb-api.com/en/API/Title/k_by6fp93n/${id}`
       );
       await Movies.create(data);
     }

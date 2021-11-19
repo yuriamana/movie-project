@@ -40,9 +40,9 @@ export default class Home extends Component {
     }
       return (
         <div>
-        {!this.state.isLoading? (
+        {/* {!this.state.isLoading? (
         <p>loading..</p>
-        ) :(
+        ) :( */}
         <Container>
         <Row>
           <Col md={8}>
@@ -65,7 +65,7 @@ export default class Home extends Component {
             </Tab>
           </Tabs>
           </Container>
-        )}
+        {/* )} */}
         </div>
       );
     }

@@ -35,19 +35,13 @@ class MyAccount extends Component {
         </label>
 
         <p className="label" htmlFor="email">
-           {}
+           {this.state.email} 
         </p>
      
         <p className="label" htmlFor="username">
-          Username
+          {this.state.username}
         </p>
-        <input
-          className="input"
-          id="username"
-          type="text"
-          name="username"
-          defaultValue={username}
-        />
+        
 
     </Container>
    );

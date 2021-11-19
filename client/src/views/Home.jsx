@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Tabs, Tab,Row, Col } from "react-bootstrap";
+import { Container, Tabs, Tab,Row, Col, Spinner } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
@@ -11,7 +11,6 @@ export default class Home extends Component {
   state = {
     movies: [],
     searchString: '',
-    isloading:false
   };
   handleSearch = (text) => {
     this.setState({searchString: text})
@@ -40,9 +39,16 @@ export default class Home extends Component {
     }
       return (
         <div>
-        {/* {!this.state.isLoading? (
-        <p>loading..</p>
-        ) :( */}
+        {!this.state.movies.length? (
+          <div className="jiazai">
+          Waiting  
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+          </div>
+        ) :(
         <Container>
         <Row>
           <Col md={8}>
@@ -61,7 +67,7 @@ export default class Home extends Component {
               {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
             </Tab>
             <Tab eventKey="Top-Movies" title="Top">
-              <TopMovies movies={(this.state.movies).splice(5,10)}/>
+              <TopMovies movies={this.state.movies}/>
             </Tab>
           </Tabs>
           </Container>

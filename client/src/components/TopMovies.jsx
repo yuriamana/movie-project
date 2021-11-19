@@ -6,10 +6,6 @@ import { Link } from "react-router-dom";
 
 
 export default function TopMovies({ movies }) {
-    if(!movies) return 
-    <Spinner animation="border" role="status">
-    <span className="visually-hidden">Loading...</span>
-    </Spinner>
     const copy = [...movies]
     copy.sort((a, b) => b.imDbRating.localeCompare(a.imDbRating))
         return (

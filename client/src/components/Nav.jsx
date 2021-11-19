@@ -15,9 +15,7 @@ class Navi extends Component {
   }
   
   render() {
-    console.log(withAuth.tmpAvatar);
     const { currentUser } = withAuth();
-
     return (
       <Navbar bg="dark" expand="sm">
         <Container>

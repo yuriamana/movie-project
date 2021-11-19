@@ -189,10 +189,10 @@ class MovieDetail extends Component {
                   <Link to="/actor/:id" className="actorblok" key={i}>
                     <img
                       className="actorimgs"
-                      src={actor.image}
-                      alt={actor.name}
+                      src={ actor.image }
+                      alt={ actor.name }
                     />
-                    {actor.name}
+                    {actor.name.slice(0,15)}
                   </Link>
                 ))}
               </span>
@@ -229,7 +229,7 @@ class MovieDetail extends Component {
               >
                 {comment.comment}
               </div>
-              <Button onClick={() => this.handleDelete(comment._id)} variant="warning">
+              <Button onClick={() => this.handleDelete(comment._id)} variant="danger">
                 Delete
               </Button>
             </>

@@ -92,3 +92,16 @@
 .form .row > .input + .icon {
   margin-left: 20px;
 }
+
+.sendimg {
+  height: 30px;
+  width: 30px;
+  margin: 12px 0 3px 10px;
+}
+
+.sendimg:hover {
+  transition: width 0.1s ,height 0.1s, transform 0.1s;
+  transition-timing-function: ease;
+  width: 35px;
+  height: 35px;
+}

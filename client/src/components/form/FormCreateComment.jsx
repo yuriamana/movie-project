@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import APIHandler from "../../api/APIHandler";
-import { Form, Button }from "react-bootstrap"
+import { Form, Button, Row }from "react-bootstrap"
 // comment recuperer le user connecte dans ce composqnt 
 // pour envoyer le id_author dans le post /comments ?
 
@@ -57,18 +57,13 @@ export default class FormCreateComment extends Component {
     //   const handleClick = () => setLoading(true);
     return (
       <div>
+       <img src="/imag/rewies.png" alt="rewies" className="sendimg" onClick={() => this.handleAddComment()} title="超链接1"/>
       <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Control as="textarea" placeholder="Comment Here..." rows={2} onChange={(value) => this.handleInputText(value)}/>
           {' '}</Form.Group>
       </Form>
-        <Button 
-        variant="primary"
-        // disabled={isLoading}
-        // onClick={!isLoading ? handleClick : null}
-        onClick={() => this.handleAddComment()} size="lg">
-          Send
-        </Button>
+
       </div>
     );
     

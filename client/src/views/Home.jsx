@@ -6,6 +6,7 @@ import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
 import AllMovies from "../components/AllMovies";
 import TopMovies from "../components/TopMovies";
+import Nouveux from "../components/Nouveux";
 
 export default class Home extends Component {
   state = {
@@ -33,6 +34,7 @@ export default class Home extends Component {
     if (this.state.searchString !== '' && this.state.movies.length > 0) {
       moviesToDisplay = this.state.movies.filter(movie => {
         return movie?.title?.toLowerCase()?.includes(this.state.searchString.toLowerCase())
+            || movie?.actor?.toLowerCase()?.includes(this.state.searchString.toLowerCase())
       })
     } else {
       moviesToDisplay = [...this.state.movies]
@@ -63,11 +65,14 @@ export default class Home extends Component {
             mountOnEnter="true"
             variant='pills'
           >
-            <Tab eventKey="home" title="Home">
-              {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
+            <Tab eventKey="New" title="New">
+              <Nouveux movies={this.state.movies}/>
             </Tab>
             <Tab eventKey="Top-Movies" title="Top">
               <TopMovies movies={this.state.movies}/>
+            </Tab>
+            <Tab eventKey="home" title="All">
+              {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
             </Tab>
           </Tabs>
           </Container>

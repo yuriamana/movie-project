@@ -136,13 +136,20 @@ class MovieDetail extends Component {
     // console.log(this.props)
     // console.log("render()");
     // console.log(this.state.usersRating);
-   
-
-    // console.log(avgRate);
+    let avgRate = 0;
+    if (this.state.usersRating.length > 0) {
+      avgRate = (
+        this.state.usersRating.reduce((acc, val) => acc + val.rate, 0) /
+        this.state.usersRating.length
+        ).toFixed(2);
+      }
+      const Xmas = new Date(this.state.year);
+      console.log(Xmas);
+      const year = Xmas.getFullYear(); // returns -100
     return (
       <Container>
         <br />
-        <h1>{this.state.title} </h1> <span>({this.state.year})</span>
+        <h1>{this.state.title}  <span className="year">({year})</span></h1>
         <br />
         <Row className="bodydetail">
           <Col md="auto" className="colImag">
@@ -229,11 +236,13 @@ class MovieDetail extends Component {
           );
         })}
         <Row>
+          <Col md={6}>
           <StarRating film={this.props.match.params.id} />
           <FormCreateComment
             fetchAllComments={this.fetchAllComments}
             movieId={this.props.match.params.id}
           />
+          </Col>
         </Row>
       </Container>
     );

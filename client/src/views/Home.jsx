@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Tabs, Tab,Row, Col } from "react-bootstrap";
+import { Container, Tabs, Tab,Row, Col, Spinner } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import "./../styles/home.css";
 import APIHandler from "./../api/APIHandler";
@@ -10,7 +10,7 @@ import TopMovies from "../components/TopMovies";
 export default class Home extends Component {
   state = {
     movies: [],
-    searchString: ''
+    searchString: '',
   };
   handleSearch = (text) => {
     this.setState({searchString: text})
@@ -18,7 +18,7 @@ export default class Home extends Component {
   async componentDidMount() {
     APIHandler.get("/movies")
       .then(({ data }) => {
-        console.log("movies", data);
+        console.log("movies", data.length);
         this.setState({
           movies: data,
         });
@@ -28,7 +28,6 @@ export default class Home extends Component {
 
   render() {
     //Filter here 
-
     let moviesToDisplay = null
 
     if (this.state.searchString !== '' && this.state.movies.length > 0) {
@@ -40,6 +39,16 @@ export default class Home extends Component {
     }
       return (
         <div>
+        {!this.state.movies.length? (
+          <div className="jiazai">
+          Waiting  
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+            <Spinner animation="grow" variant="dark" size="sm"/>
+          </div>
+        ) :(
         <Container>
         <Row>
           <Col md={8}>
@@ -58,10 +67,11 @@ export default class Home extends Component {
               {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
             </Tab>
             <Tab eventKey="Top-Movies" title="Top">
-              <TopMovies movies={(this.state.movies).splice(5,10)}/>
+              <TopMovies movies={this.state.movies}/>
             </Tab>
           </Tabs>
           </Container>
+        )}
         </div>
       );
     }

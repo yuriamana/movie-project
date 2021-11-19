@@ -63,7 +63,8 @@ export default class Home extends Component {
             mountOnEnter="true"
             variant='pills'
           >
-            <Tab eventKey="home" title="Home">
+            <Tab eventKey="home" title="All
+            ">
               {moviesToDisplay.length && <AllMovies movies={moviesToDisplay} />}
             </Tab>
             <Tab eventKey="Top-Movies" title="Top">
